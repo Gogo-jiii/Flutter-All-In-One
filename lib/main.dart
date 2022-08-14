@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/button/ButtonScreen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/HelloWorldScreen.dart';
+import 'package:flutter_all_in_one/modules/slider/SliderScreen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/TextFieldScreen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
@@ -37,7 +38,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var data = ["Hello World", "Snack Bar", "Toast", "Button", "Text Field"];
+  var data = [
+    "Hello World",
+    "Snack Bar",
+    "Toast",
+    "Button",
+    "Text Field",
+    "Slider"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +90,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const TextFieldScreen()));
       break;
+    case DashboardItemsType.slider:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const SliderScreen()));
+      break;
   }
 }
 
@@ -90,7 +102,8 @@ enum DashboardItemsType {
   snackBar,
   toast,
   button,
-  textField;
+  textField,
+  slider;
 }
 
 DashboardItemsType getListItemType(int index) {
