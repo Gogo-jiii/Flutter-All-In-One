@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/button/ButtonScreen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/HelloWorldScreen.dart';
+import 'package:flutter_all_in_one/modules/image/ImageScreen.dart';
 import 'package:flutter_all_in_one/modules/slider/SliderScreen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/TextFieldScreen.dart';
@@ -44,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Toast",
     "Button",
     "Text Field",
-    "Slider"
+    "Slider",
+    "Image"
   ];
 
   @override
@@ -94,6 +96,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const SliderScreen()));
       break;
+    case DashboardItemsType.image:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const ImageScreen()));
+      break;
   }
 }
 
@@ -103,7 +109,8 @@ enum DashboardItemsType {
   toast,
   button,
   textField,
-  slider;
+  slider,
+  image;
 }
 
 DashboardItemsType getListItemType(int index) {
