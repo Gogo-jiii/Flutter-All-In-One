@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
+import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
-import 'modules/snackbar/snackbar_screen.dart';
+import 'modules/common_widgets/common_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +20,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter All in One'),
-      routes: {
-        ListItemsType.snackBar.toString(): (context) => const SnackBarScreen(),
-      },
     );
   }
 }
@@ -35,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var data = ["Snack Bar"];
+  var data = ["Snack Bar", "Toast"];
 
   @override
   Widget build(BuildContext context) {
@@ -47,60 +46,33 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.vertical,
           itemCount: data.length,
           itemBuilder: (context, index) {
-            return getListUI(context, index);
+            return GestureDetector(
+                child: getListItem(context, data, index),
+                onTap: () {
+                  navigate(context, index);
+                });
           }),
     );
   }
+}
 
-  Widget getListUI(BuildContext context, int index) {
-    return GestureDetector(
-      onTap: () {
-        navigate(index);
-      },
-      child: Card(
-        margin: const EdgeInsets.all(8),
-        elevation: 1,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-              width: 1.0,
-              style: BorderStyle.solid),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-        ),
-        borderOnForeground: true,
-        child: SizedBox(
-          width: double.infinity,
-          height: 100,
-          child: Center(
-            child: Text(
-              data[index],
-              softWrap: true,
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void navigate(int index) {
-    var type = getListItemType(index);
-    switch (type) {
-      case ListItemsType.snackBar:
-        {
-          Navigator.pushNamed(context, ListItemsType.snackBar.toString());
-        }
-    }
+void navigate(BuildContext context, int index) {
+  var type = getListItemType(index);
+  switch (type) {
+    case ListItemsType.snackBar:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const SnackBarScreen()));
+      break;
+    case ListItemsType.toast:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const ToastScreen()));
+      break;
   }
 }
 
 enum ListItemsType {
-  snackBar;
+  snackBar,
+  toast;
 }
 
 ListItemsType getListItemType(int index) {
