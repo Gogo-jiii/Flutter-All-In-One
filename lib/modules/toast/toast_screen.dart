@@ -14,18 +14,10 @@ class _ToastScreenState extends State<ToastScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Toast"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
+      appBar: getAppBar(context, "Toast"),
       body: GestureDetector(
         onTap: () {
-          showToast();
+          showToast("This is a toast.");
         },
         child: Center(
           child: getCardButton(context, "Show Toast"),
@@ -33,14 +25,14 @@ class _ToastScreenState extends State<ToastScreen> {
       ),
     );
   }
+}
 
-  void showToast() {
-    Fluttertoast.showToast(
-        msg: "This is a Toast",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.0);
-  }
+void showToast(String text) {
+  Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/modules/button/ButtonScreen.dart';
+import 'package:flutter_all_in_one/modules/hello_world/HelloWorldScreen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
@@ -34,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var data = ["Snack Bar", "Toast"];
+  var data = ["Hello World", "Snack Bar", "Toast", "Button"];
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +61,32 @@ class _MyHomePageState extends State<MyHomePage> {
 void navigate(BuildContext context, int index) {
   var type = getListItemType(index);
   switch (type) {
-    case ListItemsType.snackBar:
+    case DashboardItemsType.helloWorld:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const HelloWorldScreen()));
+      break;
+    case DashboardItemsType.snackBar:
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const SnackBarScreen()));
       break;
-    case ListItemsType.toast:
+    case DashboardItemsType.toast:
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const ToastScreen()));
+      break;
+    case DashboardItemsType.button:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const ButtonScreen()));
       break;
   }
 }
 
-enum ListItemsType {
+enum DashboardItemsType {
+  helloWorld,
   snackBar,
-  toast;
+  toast,
+  button;
 }
 
-ListItemsType getListItemType(int index) {
-  return ListItemsType.values[index];
+DashboardItemsType getListItemType(int index) {
+  return DashboardItemsType.values[index];
 }

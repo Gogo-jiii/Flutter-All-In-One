@@ -61,3 +61,15 @@ Widget getCardButton(BuildContext context, String text) {
     ),
   );
 }
+
+PreferredSizeWidget getAppBar(BuildContext context, String title) {
+  return AppBar(
+    title: Text(title),
+    leading: IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+  );
+}
