@@ -59,16 +59,23 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-                child: getListItem(context, data, index),
-                onTap: () {
-                  navigate(context, index);
-                });
-          }),
+      body: Scrollbar(
+        thumbVisibility: true,
+        thickness: 10,
+        trackVisibility: true,
+        interactive: true,
+        radius: const Radius.circular(10),
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                  child: getListItem(context, data, index),
+                  onTap: () {
+                    navigate(context, index);
+                  });
+            }),
+      ),
     );
   }
 }
