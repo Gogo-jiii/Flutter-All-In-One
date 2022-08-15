@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_in_one/modules/button/OutlineButtonScreen.dart';
+import 'package:flutter_all_in_one/modules/button/outlinebutton_screen.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 
-import 'ElevatedButtonScreen.dart';
-import 'TextButtonScreen.dart';
+import 'elevatedbutton_screen.dart';
+import 'textbutton_screen.dart';
 
 class ButtonScreen extends StatefulWidget {
   const ButtonScreen({Key? key}) : super(key: key);

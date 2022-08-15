@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_in_one/modules/button/ButtonScreen.dart';
-import 'package:flutter_all_in_one/modules/hello_world/HelloWorldScreen.dart';
-import 'package:flutter_all_in_one/modules/image/ImageScreen.dart';
-import 'package:flutter_all_in_one/modules/slider/SliderScreen.dart';
+import 'package:flutter_all_in_one/modules/button/button_screen.dart';
+import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
+import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
+import 'package:flutter_all_in_one/modules/image/image_screen.dart';
+import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
-import 'package:flutter_all_in_one/modules/text_field/TextFieldScreen.dart';
+import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
@@ -46,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Button",
     "Text Field",
     "Slider",
-    "Image"
+    "Image",
+    "Checkbox"
   ];
 
   @override
@@ -100,6 +102,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const ImageScreen()));
       break;
+    case DashboardItemsType.checkBox:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const CheckboxScreen()));
+      break;
   }
 }
 
@@ -110,7 +116,8 @@ enum DashboardItemsType {
   button,
   textField,
   slider,
-  image;
+  image,
+  checkBox;
 }
 
 DashboardItemsType getListItemType(int index) {
