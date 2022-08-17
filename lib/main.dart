@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
+import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
@@ -52,7 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Slider",
     "Image",
     "Checkbox",
-    "Radio Button"
+    "Radio Button",
+    "Flexible Widget"
   ];
 
   @override
@@ -127,6 +129,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(context,
           MaterialPageRoute(builder: (_) => const RadioButtonScreen()));
       break;
+    case DashboardItemsType.flexibleWidget:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const FlexibleWidgetScreen()));
+      break;
   }
 }
 
@@ -140,7 +146,8 @@ enum DashboardItemsType {
   slider,
   image,
   checkBox,
-  radioButton;
+  radioButton,
+  flexibleWidget;
 }
 
 DashboardItemsType getListItemType(int index) {

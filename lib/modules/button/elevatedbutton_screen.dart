@@ -43,7 +43,7 @@ class _ElevatedButtonScreenState extends State<ElevatedButtonScreen> {
                       showToast("Icon Elevated Button is clicked.");
                     },
                     icon: const Icon(Icons.account_circle),
-                    label: const Text("Icon Elevated Button"))
+                    label: const Text("Icon Elevated Button")),
               ],
             ),
           ),
