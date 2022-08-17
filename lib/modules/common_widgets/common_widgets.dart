@@ -21,6 +21,7 @@ Widget getListItem(BuildContext context, List<String> data, int index) {
         child: Text(
           data[index],
           softWrap: true,
+          textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,

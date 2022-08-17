@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
+import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
@@ -47,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Toast",
     "Button",
     "Text Field",
+    "Get Text From Text Field",
     "Slider",
     "Image",
     "Checkbox",
@@ -103,6 +105,12 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const TextFieldScreen()));
       break;
+    case DashboardItemsType.getTextFromTextField:
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => const GetTextFromTextFieldScreen()));
+      break;
     case DashboardItemsType.slider:
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const SliderScreen()));
@@ -128,6 +136,7 @@ enum DashboardItemsType {
   toast,
   button,
   textField,
+  getTextFromTextField,
   slider,
   image,
   checkBox,
