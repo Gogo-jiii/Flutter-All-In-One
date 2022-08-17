@@ -5,6 +5,7 @@ import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_scree
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
+import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
@@ -60,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Flexible Widget",
     "Expanded Widget",
     "Divider",
-    "Spacer"
+    "Spacer",
+    "Hero Transition"
   ];
 
   @override
@@ -151,6 +153,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const SpacerScreen()));
       break;
+    case DashboardItemsType.heroTransition:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const HeroFirstScreen()));
+      break;
   }
 }
 
@@ -168,7 +174,8 @@ enum DashboardItemsType {
   flexibleWidget,
   expandedWidget,
   divider,
-  spacer;
+  spacer,
+  heroTransition;
 }
 
 DashboardItemsType getListItemType(int index) {
