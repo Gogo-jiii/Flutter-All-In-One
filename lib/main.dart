@@ -13,6 +13,7 @@ import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
+import 'modules/divider/divider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Checkbox",
     "Radio Button",
     "Flexible Widget",
-    "Expanded Widget"
+    "Expanded Widget",
+    "Divider"
   ];
 
   @override
@@ -139,6 +141,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(context,
           MaterialPageRoute(builder: (_) => const ExpandedWidgetScreen()));
       break;
+    case DashboardItemsType.divider:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const DividerScreen()));
+      break;
   }
 }
 
@@ -154,7 +160,8 @@ enum DashboardItemsType {
   checkBox,
   radioButton,
   flexibleWidget,
-  expandedWidget;
+  expandedWidget,
+  divider;
 }
 
 DashboardItemsType getListItemType(int index) {
