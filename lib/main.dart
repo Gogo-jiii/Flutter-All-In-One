@@ -9,6 +9,7 @@ import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
+import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
@@ -58,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Radio Button",
     "Flexible Widget",
     "Expanded Widget",
-    "Divider"
+    "Divider",
+    "Spacer"
   ];
 
   @override
@@ -145,6 +147,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const DividerScreen()));
       break;
+    case DashboardItemsType.spacer:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const SpacerScreen()));
+      break;
   }
 }
 
@@ -161,7 +167,8 @@ enum DashboardItemsType {
   radioButton,
   flexibleWidget,
   expandedWidget,
-  divider;
+  divider,
+  spacer;
 }
 
 DashboardItemsType getListItemType(int index) {
