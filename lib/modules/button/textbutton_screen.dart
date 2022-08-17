@@ -43,7 +43,21 @@ class _TextButtonScreenState extends State<TextButtonScreen> {
                       showToast("Icon Text Button is clicked.");
                     },
                     icon: const Icon(Icons.account_circle),
-                    label: const Text("Icon Text Button"))
+                    label: const Text("Icon Text Button")),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      showToast("Full Width Text Button is clicked.");
+                    },
+                    child: const Text(
+                      "Full Width Text Button",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

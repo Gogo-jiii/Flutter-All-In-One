@@ -43,7 +43,21 @@ class _OutlineButtonScreenState extends State<OutlineButtonScreen> {
                       showToast("Icon Outline Button is clicked.");
                     },
                     icon: const Icon(Icons.account_circle),
-                    label: const Text("Icon Outline Button"))
+                    label: const Text("Icon Outline Button")),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      showToast("Full Width Outline Button is clicked.");
+                    },
+                    child: const Text(
+                      "Full Width Outline Button",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

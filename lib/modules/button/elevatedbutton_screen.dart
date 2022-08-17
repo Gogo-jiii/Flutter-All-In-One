@@ -44,6 +44,20 @@ class _ElevatedButtonScreenState extends State<ElevatedButtonScreen> {
                     },
                     icon: const Icon(Icons.account_circle),
                     label: const Text("Icon Elevated Button")),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showToast("Full Width Elevated Button is clicked.");
+                    },
+                    child: const Text(
+                      "Full Width Elevated Button",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
