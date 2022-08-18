@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
+import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 class GetTextFromTextFieldScreen extends StatefulWidget {
   const GetTextFromTextFieldScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _GetTextFromTextFieldScreenState
     return Scaffold(
       appBar: getAppBar(context, "Get Text From TextField"),
       body: Container(
-        margin: EdgeInsets.only(left: 8, right: 8, top: 32),
+        margin: const EdgeInsets.only(left: 8, right: 8, top: 32),
         child: Column(
           children: [
             TextFormField(
@@ -37,6 +38,7 @@ class _GetTextFromTextFieldScreenState
                     _validate = false;
                   } else {
                     _validate = true;
+                    showToast(_text.text);
                   }
                 });
               },

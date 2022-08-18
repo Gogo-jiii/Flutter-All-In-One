@@ -7,11 +7,13 @@ import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
+import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
+import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
@@ -49,11 +51,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var data = [
     "Hello World",
+    "Log",
     "Snack Bar",
     "Toast",
     "Button",
     "Text Field",
     "Get Text From Text Field",
+    "Text Watcher",
     "Slider",
     "Image",
     "Checkbox",
@@ -99,6 +103,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const HelloWorldScreen()));
       break;
+    case DashboardItemsType.log:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const LogScreen()));
+      break;
     case DashboardItemsType.snackBar:
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const SnackBarScreen()));
@@ -120,6 +128,12 @@ void navigate(BuildContext context, int index) {
           context,
           MaterialPageRoute(
               builder: (_) => const GetTextFromTextFieldScreen()));
+      break;
+    case DashboardItemsType.textWatcher:
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => const TextWatcherScreen()));
       break;
     case DashboardItemsType.slider:
       Navigator.push(
@@ -162,11 +176,13 @@ void navigate(BuildContext context, int index) {
 
 enum DashboardItemsType {
   helloWorld,
+  log,
   snackBar,
   toast,
   button,
   textField,
   getTextFromTextField,
+  textWatcher,
   slider,
   image,
   checkBox,
