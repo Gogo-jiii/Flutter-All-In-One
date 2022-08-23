@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
@@ -68,7 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Divider",
     "Spacer",
     "Hero Transition",
-    "Toggle Button"
+    "Toggle Button",
+    "Autocomplete TextField"
   ];
 
   @override
@@ -175,6 +177,12 @@ void navigate(BuildContext context, int index) {
       Navigator.push(context,
           MaterialPageRoute(builder: (_) => const ToggleButtonScreen()));
       break;
+    case DashboardItemsType.autocompleteTextField:
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => const AutoCompleteTextFieldScreen()));
+      break;
   }
 }
 
@@ -196,7 +204,8 @@ enum DashboardItemsType {
   divider,
   spacer,
   heroTransition,
-  toggleButton;
+  toggleButton,
+  autocompleteTextField;
 }
 
 DashboardItemsType getListItemType(int index) {
