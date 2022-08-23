@@ -15,6 +15,7 @@ import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
+import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/divider/divider_screen.dart';
@@ -66,7 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Expanded Widget",
     "Divider",
     "Spacer",
-    "Hero Transition"
+    "Hero Transition",
+    "Toggle Button"
   ];
 
   @override
@@ -130,10 +132,8 @@ void navigate(BuildContext context, int index) {
               builder: (_) => const GetTextFromTextFieldScreen()));
       break;
     case DashboardItemsType.textWatcher:
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => const TextWatcherScreen()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const TextWatcherScreen()));
       break;
     case DashboardItemsType.slider:
       Navigator.push(
@@ -171,6 +171,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const HeroFirstScreen()));
       break;
+    case DashboardItemsType.toggleButton:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const ToggleButtonScreen()));
+      break;
   }
 }
 
@@ -191,7 +195,8 @@ enum DashboardItemsType {
   expandedWidget,
   divider,
   spacer,
-  heroTransition;
+  heroTransition,
+  toggleButton;
 }
 
 DashboardItemsType getListItemType(int index) {
