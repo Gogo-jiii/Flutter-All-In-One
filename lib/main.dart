@@ -20,6 +20,7 @@ import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.da
 
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/divider/divider_screen.dart';
+import 'modules/dropdown_button/dropdown_button_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Spacer",
     "Hero Transition",
     "Toggle Button",
-    "Autocomplete TextField"
+    "Autocomplete TextField",
+    "Dropdown Button"
   ];
 
   @override
@@ -183,6 +185,10 @@ void navigate(BuildContext context, int index) {
           MaterialPageRoute(
               builder: (_) => const AutoCompleteTextFieldScreen()));
       break;
+    case DashboardItemsType.dropdownButton:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const DropDownButtonScreen()));
+      break;
   }
 }
 
@@ -205,7 +211,8 @@ enum DashboardItemsType {
   spacer,
   heroTransition,
   toggleButton,
-  autocompleteTextField;
+  autocompleteTextField,
+  dropdownButton;
 }
 
 DashboardItemsType getListItemType(int index) {
