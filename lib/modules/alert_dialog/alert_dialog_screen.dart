@@ -38,6 +38,28 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                   "Option Alert Dialog",
                 ),
               ),
+              const SizedBox(
+                height: 32,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showSingleChoiceAlertDialog();
+                },
+                child: const Text(
+                  "Single Choice Alert Dialog",
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showMultipleChoiceAlertDialog();
+                },
+                child: const Text(
+                  "Multiple Choice Alert Dialog",
+                ),
+              ),
             ],
           ),
         ),
@@ -123,9 +145,225 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
         break;
     }
   }
+
+  void showSingleChoiceAlertDialog() {
+    RadioButtonData selectedValue = RadioButtonData.A;
+
+    showDialog(
+      barrierDismissible: false,
+      //barrierColor: Colors.white,
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 8,
+        scrollable: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        title: const Text("Select Option"),
+        content: StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                      groupValue: selectedValue,
+                      onChanged: (RadioButtonData? value) {
+                        setState(() {
+                          selectedValue = value!;
+                          showToast("A is selected.");
+                        });
+                      },
+                      value: RadioButtonData.A,
+                    ),
+                    const Text("A"),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                      groupValue: selectedValue,
+                      onChanged: (RadioButtonData? value) {
+                        setState(() {
+                          selectedValue = value!;
+                          showToast("B is selected.");
+                        });
+                      },
+                      value: RadioButtonData.B,
+                    ),
+                    const Text("B"),
+                  ],
+                )
+              ],
+            );
+          },
+        ),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            onPressed: () {
+              showToast("Cancel");
+              Navigator.pop(context, "Cancel");
+            },
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            onPressed: () {
+              showToast("Selected Value: $selectedValue");
+              Navigator.pop(context, "Ok");
+            },
+            child: const Text("Ok"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showMultipleChoiceAlertDialog() {
+    bool checkboxValueA = false;
+    bool checkboxValueB = false;
+    bool checkboxValueC = false;
+    List<bool> selectedCheckboxes = [false, false, false];
+
+    showDialog(
+      barrierDismissible: false,
+      //barrierColor: Colors.white,
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 8,
+        scrollable: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        title: const Text("Select Option"),
+        content: StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: checkboxValueA,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          checkboxValueA = value!;
+
+                          var isChecked = "";
+                          if (checkboxValueA == true) {
+                            isChecked = "checked";
+                          } else {
+                            isChecked = "un-checked";
+                          }
+
+                          selectedCheckboxes[0] = checkboxValueA;
+                          showToast("A is $isChecked");
+                        });
+                      },
+                    ),
+                    const Text("A"),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: checkboxValueB,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          checkboxValueB = value!;
+
+                          var isChecked = "";
+                          if (checkboxValueB == true) {
+                            isChecked = "checked";
+                          } else {
+                            isChecked = "un-checked";
+                          }
+                          selectedCheckboxes[1] = checkboxValueB;
+                          showToast("B is $isChecked");
+                        });
+                      },
+                    ),
+                    const Text("B"),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: checkboxValueC,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          checkboxValueC = value!;
+
+                          var isChecked = "";
+                          if (checkboxValueC == true) {
+                            isChecked = "checked";
+                          } else {
+                            isChecked = "un-checked";
+                          }
+
+                          selectedCheckboxes[2] = checkboxValueC;
+                          showToast("C is $isChecked");
+                        });
+                      },
+                    ),
+                    const Text("C"),
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            onPressed: () {
+              showToast("Cancel");
+              Navigator.pop(context, "Cancel");
+            },
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            onPressed: () {
+              showToast("Result : $selectedCheckboxes");
+              Navigator.pop(context, "Ok");
+            },
+            child: const Text("Ok"),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 enum Data {
   firstOption,
   secondOption,
 }
+
+enum RadioButtonData { A, B, C }
