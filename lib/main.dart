@@ -10,6 +10,7 @@ import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
+import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
@@ -74,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Toggle Button",
     "Autocomplete TextField",
     "Dropdown Button",
-    "Dropdown Form Field"
+    "Dropdown Form Field",
+    "Rating Bar"
   ];
 
   @override
@@ -108,94 +110,76 @@ void navigate(BuildContext context, int index) {
   var type = getListItemType(index);
   switch (type) {
     case DashboardItemsType.helloWorld:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const HelloWorldScreen()));
+      navigateTo(context, const HelloWorldScreen());
       break;
     case DashboardItemsType.log:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const LogScreen()));
+      navigateTo(context, const LogScreen());
       break;
     case DashboardItemsType.snackBar:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const SnackBarScreen()));
+      navigateTo(context, const SnackBarScreen());
       break;
     case DashboardItemsType.toast:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const ToastScreen()));
+      navigateTo(context, const ToastScreen());
       break;
     case DashboardItemsType.button:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const ButtonScreen()));
+      navigateTo(context, const ButtonScreen());
       break;
     case DashboardItemsType.textField:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const TextFieldScreen()));
+      navigateTo(context, const TextFieldScreen());
       break;
     case DashboardItemsType.getTextFromTextField:
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => const GetTextFromTextFieldScreen()));
+      navigateTo(context, const GetTextFromTextFieldScreen());
       break;
     case DashboardItemsType.textWatcher:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const TextWatcherScreen()));
+      navigateTo(context, const TextWatcherScreen());
       break;
     case DashboardItemsType.slider:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const SliderScreen()));
+      navigateTo(context, const SliderScreen());
       break;
     case DashboardItemsType.image:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const ImageScreen()));
+      navigateTo(context, const ImageScreen());
       break;
     case DashboardItemsType.checkBox:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const CheckboxScreen()));
+      navigateTo(context, const CheckboxScreen());
       break;
     case DashboardItemsType.radioButton:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const RadioButtonScreen()));
+      navigateTo(context, const RadioButtonScreen());
       break;
     case DashboardItemsType.flexibleWidget:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const FlexibleWidgetScreen()));
+      navigateTo(context, const FlexibleWidgetScreen());
       break;
     case DashboardItemsType.expandedWidget:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const ExpandedWidgetScreen()));
+      navigateTo(context, const ExpandedWidgetScreen());
       break;
     case DashboardItemsType.divider:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const DividerScreen()));
+      navigateTo(context, const DividerScreen());
       break;
     case DashboardItemsType.spacer:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const SpacerScreen()));
+      navigateTo(context, const SpacerScreen());
       break;
     case DashboardItemsType.heroTransition:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const HeroFirstScreen()));
+      navigateTo(context, const HeroFirstScreen());
       break;
     case DashboardItemsType.toggleButton:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const ToggleButtonScreen()));
+      navigateTo(context, const ToggleButtonScreen());
       break;
     case DashboardItemsType.autocompleteTextField:
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => const AutoCompleteTextFieldScreen()));
+      navigateTo(context, const AutoCompleteTextFieldScreen());
       break;
     case DashboardItemsType.dropdownButton:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const DropDownButtonScreen()));
+      navigateTo(context, const DropDownButtonScreen());
       break;
     case DashboardItemsType.dropdownFormField:
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => const DropDownFormFieldScreen()));
+      navigateTo(context, const DropDownFormFieldScreen());
+      break;
+    case DashboardItemsType.ratingBar:
+      navigateTo(context, const RatingBarScreen());
       break;
   }
+}
+
+void navigateTo(BuildContext context, StatefulWidget destination) {
+  Navigator.push(context, MaterialPageRoute(builder: (_) => destination));
 }
 
 enum DashboardItemsType {
@@ -219,7 +203,8 @@ enum DashboardItemsType {
   toggleButton,
   autocompleteTextField,
   dropdownButton,
-  dropdownFormField;
+  dropdownFormField,
+  ratingBar;
 }
 
 DashboardItemsType getListItemType(int index) {
