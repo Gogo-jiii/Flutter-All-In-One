@@ -21,6 +21,7 @@ import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.da
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
+import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Hero Transition",
     "Toggle Button",
     "Autocomplete TextField",
-    "Dropdown Button"
+    "Dropdown Button",
+    "Dropdown Form Field"
   ];
 
   @override
@@ -189,6 +191,10 @@ void navigate(BuildContext context, int index) {
       Navigator.push(context,
           MaterialPageRoute(builder: (_) => const DropDownButtonScreen()));
       break;
+    case DashboardItemsType.dropdownFormField:
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const DropDownFormFieldScreen()));
+      break;
   }
 }
 
@@ -212,7 +218,8 @@ enum DashboardItemsType {
   heroTransition,
   toggleButton,
   autocompleteTextField,
-  dropdownButton;
+  dropdownButton,
+  dropdownFormField;
 }
 
 DashboardItemsType getListItemType(int index) {
