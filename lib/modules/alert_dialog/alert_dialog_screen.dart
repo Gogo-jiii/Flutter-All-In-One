@@ -26,7 +26,18 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                 child: const Text(
                   "Simple Alert Dialog",
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showOptionAlertDialog();
+                },
+                child: const Text(
+                  "Option Alert Dialog",
+                ),
+              ),
             ],
           ),
         ),
@@ -78,4 +89,43 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       ),
     );
   }
+
+  Future<void> showOptionAlertDialog() async {
+    switch (await showDialog<Data>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text('Select option'),
+            children: <Widget>[
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, Data.firstOption);
+                },
+                child: const Text('First Option'),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, Data.secondOption);
+                },
+                child: const Text('Second Option'),
+              ),
+            ],
+          );
+        })) {
+      case Data.firstOption:
+        showToast("First Option");
+        break;
+      case Data.secondOption:
+        showToast("Second Option");
+        break;
+      case null:
+        // dialog dismissed
+        break;
+    }
+  }
+}
+
+enum Data {
+  firstOption,
+  secondOption,
 }
