@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart';
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
@@ -76,7 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Autocomplete TextField",
     "Dropdown Button",
     "Dropdown Form Field",
-    "Rating Bar"
+    "Rating Bar",
+    "Alert Dialog"
   ];
 
   @override
@@ -175,6 +177,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.ratingBar:
       navigateTo(context, const RatingBarScreen());
       break;
+    case DashboardItemsType.alertDialog:
+      navigateTo(context, const AlertDialogScreen());
+      break;
   }
 }
 
@@ -204,7 +209,8 @@ enum DashboardItemsType {
   autocompleteTextField,
   dropdownButton,
   dropdownFormField,
-  ratingBar;
+  ratingBar,
+  alertDialog;
 }
 
 DashboardItemsType getListItemType(int index) {
