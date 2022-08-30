@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_all_in_one">
    <application
-        android:label="flutter_all_in_one"
+        android:label="Flutter All In One"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

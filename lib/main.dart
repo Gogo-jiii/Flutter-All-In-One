@@ -10,6 +10,7 @@ import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
+import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
@@ -19,7 +20,6 @@ import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
-
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
@@ -78,7 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Dropdown Button",
     "Dropdown Form Field",
     "Rating Bar",
-    "Alert Dialog"
+    "Alert Dialog",
+    "Progress Indicator"
   ];
 
   @override
@@ -180,6 +181,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.alertDialog:
       navigateTo(context, const AlertDialogScreen());
       break;
+    case DashboardItemsType.progressIndicator:
+      navigateTo(context, const ProgressIndicatorScreen());
+      break;
   }
 }
 
@@ -210,7 +214,8 @@ enum DashboardItemsType {
   dropdownButton,
   dropdownFormField,
   ratingBar,
-  alertDialog;
+  alertDialog,
+  progressIndicator;
 }
 
 DashboardItemsType getListItemType(int index) {
