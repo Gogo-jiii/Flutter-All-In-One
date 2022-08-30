@@ -3,7 +3,6 @@ import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
-import 'package:flutter_all_in_one/modules/datepicker/datepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
@@ -19,10 +18,12 @@ import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
+import 'package:flutter_all_in_one/modules/timepicker/timepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
+import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
@@ -82,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Rating Bar",
     "Alert Dialog",
     "Progress Indicator",
-    "Date Picker"
+    "Date Picker",
+    "Time Picker"
   ];
 
   @override
@@ -188,7 +190,10 @@ void navigate(BuildContext context, int index) {
       navigateTo(context, const ProgressIndicatorScreen());
       break;
     case DashboardItemsType.datePicker:
-      navigateTo(context, const DatePickerScreen(restorationId: 'main'));
+      navigateTo(context, const DatePickerScreen());
+      break;
+    case DashboardItemsType.timePicker:
+      navigateTo(context, const TimePickerScreen());
       break;
   }
 }
@@ -222,7 +227,8 @@ enum DashboardItemsType {
   ratingBar,
   alertDialog,
   progressIndicator,
-  datePicker;
+  datePicker,
+  timePicker;
 }
 
 DashboardItemsType getListItemType(int index) {
