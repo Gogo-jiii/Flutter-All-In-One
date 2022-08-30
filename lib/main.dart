@@ -3,6 +3,7 @@ import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
+import 'package:flutter_all_in_one/modules/datepicker/datepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
+
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
@@ -79,7 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Dropdown Form Field",
     "Rating Bar",
     "Alert Dialog",
-    "Progress Indicator"
+    "Progress Indicator",
+    "Date Picker"
   ];
 
   @override
@@ -184,6 +187,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.progressIndicator:
       navigateTo(context, const ProgressIndicatorScreen());
       break;
+    case DashboardItemsType.datePicker:
+      navigateTo(context, const DatePickerScreen(restorationId: 'main'));
+      break;
   }
 }
 
@@ -215,7 +221,8 @@ enum DashboardItemsType {
   dropdownFormField,
   ratingBar,
   alertDialog,
-  progressIndicator;
+  progressIndicator,
+  datePicker;
 }
 
 DashboardItemsType getListItemType(int index) {
