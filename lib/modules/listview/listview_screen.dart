@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
-import 'package:flutter_all_in_one/modules/listview/multiple_items_selection_listview_screen/multiple_items_selection_listview_screen.dart';
-import 'package:flutter_all_in_one/modules/listview/simple_listview_screen/simple_listview_screen.dart';
-import 'package:flutter_all_in_one/modules/listview/single_item_selection_listview_screen/single_item_selection_listview_screen.dart';
-import 'package:flutter_all_in_one/modules/listview/swipe_to_delete_item_listview_screen/swipe_to_delete_item_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/drag_drop_item_listview/drag_drop_item_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/multiple_items_selection_listview/multiple_items_selection_listview_screen.dart';
+
+import 'simple_listview/simple_listview_screen.dart';
+import 'single_item_selection_listview/single_item_selection_listview_screen.dart';
+import 'swipe_to_delete_item_listview/swipe_to_delete_item_listview_screen.dart';
 
 class ListviewScreen extends StatefulWidget {
   const ListviewScreen({Key? key}) : super(key: key);
@@ -88,6 +90,18 @@ class GetUI extends StatelessWidget {
                     builder: (_) => const SwipeToDeleteItemListviewScreen()));
           },
           child: const Text("Swipe To Delete Item Listview"),
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => const DragDropItemListviewScreen()));
+          },
+          child: const Text("Drag Drop Item Listview"),
         ),
         const SizedBox(
           height: 32,
