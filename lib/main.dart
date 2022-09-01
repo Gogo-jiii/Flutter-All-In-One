@@ -9,6 +9,7 @@ import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
@@ -84,7 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Alert Dialog",
     "Progress Indicator",
     "Date Picker",
-    "Time Picker"
+    "Time Picker",
+    "Listview"
   ];
 
   @override
@@ -195,6 +197,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.timePicker:
       navigateTo(context, const TimePickerScreen());
       break;
+    case DashboardItemsType.listView:
+      navigateTo(context, const ListviewScreen());
+      break;
   }
 }
 
@@ -228,7 +233,8 @@ enum DashboardItemsType {
   alertDialog,
   progressIndicator,
   datePicker,
-  timePicker;
+  timePicker,
+  listView;
 }
 
 DashboardItemsType getListItemType(int index) {
