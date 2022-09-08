@@ -53,7 +53,7 @@ class _MultipleItemsSelectionListviewScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar(context, "Single Item Selection Listview"),
+      appBar: getAppBar(context, "Multiple Items Selection Listview"),
       body: Container(
         margin: const EdgeInsets.all(16),
         child: Center(
