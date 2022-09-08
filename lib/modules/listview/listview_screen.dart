@@ -3,14 +3,15 @@ import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:flutter_all_in_one/modules/listview/drag_drop_item_listview/drag_drop_item_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/expandable_listview/expandable_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/grid_view_listview/grid_view_screen.dart';
-import 'package:flutter_all_in_one/modules/listview/horizontal_listview/horizontal_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/multiple_items_selection_listview/multiple_items_selection_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/nested_listview/nested_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/simple_listview/simple_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/staggered_listview/staggered_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/swipe_to_delete_item_listview/swipe_to_delete_item_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/viewtypes_listview/viewtypes_listview_screen.dart';
 
-import 'simple_listview/simple_listview_screen.dart';
+import 'horizontal_listview/horizontal_listview_screen.dart';
 import 'single_item_selection_listview/single_item_selection_listview_screen.dart';
-import 'swipe_to_delete_item_listview/swipe_to_delete_item_listview_screen.dart';
 
 class ListviewScreen extends StatefulWidget {
   const ListviewScreen({Key? key}) : super(key: key);
@@ -48,128 +49,76 @@ class GetUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const SimpleListviewScreen()));
-          },
-          child: const Text("Simple Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const SingleItemSelectionListViewScreen()));
-          },
-          child: const Text("Single Item Selection Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) =>
-                        const MultipleItemsSelectionListviewScreen()));
-          },
-          child: const Text("Multiple Items Selection Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const SwipeToDeleteItemListviewScreen()));
-          },
-          child: const Text("Swipe To Delete Item Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const DragDropItemListviewScreen()));
-          },
-          child: const Text("Drag Drop Item Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const HorizontalListViewScreen()));
-          },
-          child: const Text("Horizontal Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const GridViewScreen()));
-          },
-          child: const Text("Gridview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const StaggeredListViewScreen()));
-          },
-          child: const Text("Staggered Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const ViewTypeListviewScreen()));
-          },
-          child: const Text("Different View Types Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const ExpandableListviewScreen()));
-          },
-          child: const Text("Expandable Listview"),
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: const [
+          _SizedBox(16),
+          _Button("Simple Listview", SimpleListviewScreen()),
+          _SizedBox(16),
+          _Button("Single Item Selection Listview",
+              SingleItemSelectionListViewScreen()),
+          _SizedBox(16),
+          _Button("Multiple Items Selection Listview",
+              MultipleItemsSelectionListviewScreen()),
+          _SizedBox(16),
+          _Button("Horizontal Listview", HorizontalListViewScreen()),
+          _SizedBox(16),
+          _Button("Grid View", GridViewScreen()),
+          _SizedBox(16),
+          _Button("Staggered Listview", StaggeredListViewScreen()),
+          _SizedBox(16),
+          _Button("Drag Drop Item Listview", DragDropItemListviewScreen()),
+          _SizedBox(16),
+          _Button("Swipe Item To Delete Listview",
+              SwipeToDeleteItemListviewScreen()),
+          _SizedBox(16),
+          _Button("Different View Types Listview", ViewTypeListviewScreen()),
+          _SizedBox(16),
+          _Button("Expandable Listview", ExpandableListviewScreen()),
+          _SizedBox(16),
+          _Button("Nested Listview", NestedListviewScreen()),
+        ],
+      ),
+    );
+  }
+}
+
+class _SizedBox extends StatelessWidget {
+  final double value;
+
+  const _SizedBox(
+    this.value, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: value,
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  final String title;
+  final StatefulWidget screen;
+
+  const _Button(
+    this.title,
+    this.screen, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+        },
+        child: Text(title),
+      ),
     );
   }
 }
