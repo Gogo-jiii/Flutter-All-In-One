@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:flutter_all_in_one/modules/listview/drag_drop_item_listview/drag_drop_item_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/expandable_listview/expandable_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/grid_view_listview/grid_view_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/horizontal_listview/horizontal_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/multiple_items_selection_listview/multiple_items_selection_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/staggered_listview/staggered_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/viewtypes_listview/viewtypes_listview_screen.dart';
 
 import 'simple_listview/simple_listview_screen.dart';
 import 'single_item_selection_listview/single_item_selection_listview_screen.dart';
@@ -139,6 +141,30 @@ class GetUI extends StatelessWidget {
                     builder: (_) => const StaggeredListViewScreen()));
           },
           child: const Text("Staggered Listview"),
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => const ViewTypeListviewScreen()));
+          },
+          child: const Text("Different View Types Listview"),
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => const ExpandableListviewScreen()));
+          },
+          child: const Text("Expandable Listview"),
         ),
         const SizedBox(
           height: 32,
