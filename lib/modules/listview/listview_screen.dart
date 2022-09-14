@@ -12,6 +12,7 @@ import 'package:flutter_all_in_one/modules/listview/swipe_to_delete_item_listvie
 import 'package:flutter_all_in_one/modules/listview/swipe_to_refresh_listview/swipe_to_refresh_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/viewtypes_listview/viewtypes_listview_screen.dart';
 
+import 'checkbox_listview/checkbox_listview_screen.dart';
 import 'horizontal_listview/horizontal_listview_screen.dart';
 import 'single_item_selection_listview/single_item_selection_listview_screen.dart';
 
@@ -83,6 +84,8 @@ class GetUI extends StatelessWidget {
           _Button("Swipe To Refresh Listview", SwipeToRefreshListviewScreen()),
           _SizedBox(16),
           _Button("Radio Button Listview", RadioButtonListviewScreen()),
+          _SizedBox(16),
+          _Button("CheckboxListview", CheckboxListviewScreen()),
         ],
       ),
     );
