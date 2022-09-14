@@ -8,6 +8,7 @@ import 'package:flutter_all_in_one/modules/listview/nested_listview/nested_listv
 import 'package:flutter_all_in_one/modules/listview/simple_listview/simple_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/staggered_listview/staggered_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/swipe_to_delete_item_listview/swipe_to_delete_item_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/swipe_to_refresh_listview/swipe_to_refresh_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/viewtypes_listview/viewtypes_listview_screen.dart';
 
 import 'horizontal_listview/horizontal_listview_screen.dart';
@@ -77,6 +78,8 @@ class GetUI extends StatelessWidget {
           _Button("Expandable Listview", ExpandableListviewScreen()),
           _SizedBox(16),
           _Button("Nested Listview", NestedListviewScreen()),
+          _SizedBox(16),
+          _Button("Swipe To Refresh Listview", SwipeToRefreshListviewScreen()),
         ],
       ),
     );
