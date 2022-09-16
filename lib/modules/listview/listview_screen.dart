@@ -5,6 +5,7 @@ import 'package:flutter_all_in_one/modules/listview/expandable_listview/expandab
 import 'package:flutter_all_in_one/modules/listview/grid_view_listview/grid_view_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/multiple_items_selection_listview/multiple_items_selection_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/nested_listview/nested_listview_screen.dart';
+import 'package:flutter_all_in_one/modules/listview/pagination_listview/pagination_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/radio_button_listview/radio_button_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/search_filter_listview/search_filter_listview_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/shimmer_listview/shimmer_listview_screen.dart';
@@ -92,6 +93,8 @@ class GetUI extends StatelessWidget {
           _Button("Shimmer Listview", ShimmerListviewScreen()),
           _SizedBox(16),
           _Button("Search Filter Listview", SearchFilterListviewScreen()),
+          _SizedBox(16),
+          _Button("Pagination Listview", PaginationListviewScreen()),
         ],
       ),
     );
