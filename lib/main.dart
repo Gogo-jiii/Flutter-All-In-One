@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart';
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
+import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
@@ -88,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Date Picker",
     "Time Picker",
     "Listview",
-    "Visibility"
+    "Visibility",
+    "Button Bar"
   ];
 
   @override
@@ -205,6 +207,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.visibility:
       navigateTo(context, const VisibilityScreen());
       break;
+    case DashboardItemsType.buttonBar:
+      navigateTo(context, const ButtonBarScreen());
+      break;
   }
 }
 
@@ -240,7 +245,8 @@ enum DashboardItemsType {
   datePicker,
   timePicker,
   listView,
-  visibility;
+  visibility,
+  buttonBar;
 }
 
 DashboardItemsType getListItemType(int index) {
