@@ -22,6 +22,7 @@ import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/timepicker/timepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
+import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/datepicker/date_picker_screen.dart';
@@ -86,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Progress Indicator",
     "Date Picker",
     "Time Picker",
-    "Listview"
+    "Listview",
+    "Visibility"
   ];
 
   @override
@@ -200,6 +202,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.listView:
       navigateTo(context, const ListviewScreen());
       break;
+    case DashboardItemsType.visibility:
+      navigateTo(context, const VisibilityScreen());
+      break;
   }
 }
 
@@ -234,7 +239,8 @@ enum DashboardItemsType {
   progressIndicator,
   datePicker,
   timePicker,
-  listView;
+  listView,
+  visibility;
 }
 
 DashboardItemsType getListItemType(int index) {
