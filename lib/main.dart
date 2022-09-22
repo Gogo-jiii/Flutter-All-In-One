@@ -9,6 +9,7 @@ import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_scree
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
+import 'package:flutter_all_in_one/modules/http/http_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
@@ -90,7 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Time Picker",
     "Listview",
     "Visibility",
-    "Button Bar"
+    "Button Bar",
+    "Http Request"
   ];
 
   @override
@@ -210,6 +212,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.buttonBar:
       navigateTo(context, const ButtonBarScreen());
       break;
+    case DashboardItemsType.httpRequest:
+      navigateTo(context, const HttpRequestScreen());
+      break;
   }
 }
 
@@ -246,7 +251,8 @@ enum DashboardItemsType {
   timePicker,
   listView,
   visibility,
-  buttonBar;
+  buttonBar,
+  httpRequest;
 }
 
 DashboardItemsType getListItemType(int index) {
