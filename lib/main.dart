@@ -5,6 +5,7 @@ import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
+import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
@@ -92,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Listview",
     "Visibility",
     "Button Bar",
-    "Http Request"
+    "Http Request",
+    "Floating Action Button"
   ];
 
   @override
@@ -215,6 +217,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.httpRequest:
       navigateTo(context, const HttpRequestScreen());
       break;
+    case DashboardItemsType.fab:
+      navigateTo(context, const FabScreen());
+      break;
   }
 }
 
@@ -252,7 +257,8 @@ enum DashboardItemsType {
   listView,
   visibility,
   buttonBar,
-  httpRequest;
+  httpRequest,
+  fab;
 }
 
 DashboardItemsType getListItemType(int index) {
