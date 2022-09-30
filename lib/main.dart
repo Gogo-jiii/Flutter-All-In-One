@@ -230,7 +230,8 @@ void navigate(BuildContext context, int index) {
       navigateTo(context, const ToolbarMenuScreen());
       break;
     case DashboardItemsType.navigationDrawer:
-      navigateTo(context, const NavigationDrawerScreen());
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const NavigationDrawerScreen()));
       break;
     case DashboardItemsType.bottomAppbar:
       navigateTo(context, const BottomAppBarScreen());
