@@ -25,6 +25,7 @@ import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/timepicker/timepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
+import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
@@ -94,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Visibility",
     "Button Bar",
     "Http Request",
-    "Floating Action Button"
+    "Floating Action Button",
+    "Toolbar Menu"
   ];
 
   @override
@@ -220,6 +222,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.fab:
       navigateTo(context, const FabScreen());
       break;
+    case DashboardItemsType.toolbarMenu:
+      navigateTo(context, const ToolbarMenuScreen());
+      break;
   }
 }
 
@@ -258,7 +263,8 @@ enum DashboardItemsType {
   visibility,
   buttonBar,
   httpRequest,
-  fab;
+  fab,
+  toolbarMenu;
 }
 
 DashboardItemsType getListItemType(int index) {
