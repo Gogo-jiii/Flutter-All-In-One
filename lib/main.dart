@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart';
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
+import 'package:flutter_all_in_one/modules/bottom_appbar/bottom_appbar_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
@@ -98,7 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Http Request",
     "Floating Action Button",
     "Toolbar Menu",
-    "Navigation Drawer"
+    "Navigation Drawer",
+    "Bottom AppBar"
   ];
 
   @override
@@ -230,6 +232,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.navigationDrawer:
       navigateTo(context, const NavigationDrawerScreen());
       break;
+    case DashboardItemsType.bottomAppbar:
+      navigateTo(context, const BottomAppBarScreen());
+      break;
   }
 }
 
@@ -270,7 +275,8 @@ enum DashboardItemsType {
   httpRequest,
   fab,
   toolbarMenu,
-  navigationDrawer;
+  navigationDrawer,
+  bottomAppbar;
 }
 
 DashboardItemsType getListItemType(int index) {
