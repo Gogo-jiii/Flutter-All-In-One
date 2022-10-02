@@ -28,6 +28,7 @@ import 'package:flutter_all_in_one/modules/timepicker/timepicker_screen.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.dart';
 import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart';
+import 'package:flutter_all_in_one/modules/view_pager/view_pager_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
@@ -100,7 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Floating Action Button",
     "Toolbar Menu",
     "Navigation Drawer",
-    "Bottom AppBar"
+    "Bottom AppBar",
+    "View Pager"
   ];
 
   @override
@@ -236,6 +238,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.bottomAppbar:
       navigateTo(context, const BottomAppBarScreen());
       break;
+    case DashboardItemsType.viewPager:
+      navigateTo(context, const ViewPagerScreen());
+      break;
   }
 }
 
@@ -277,7 +282,8 @@ enum DashboardItemsType {
   fab,
   toolbarMenu,
   navigationDrawer,
-  bottomAppbar;
+  bottomAppbar,
+  viewPager;
 }
 
 DashboardItemsType getListItemType(int index) {
