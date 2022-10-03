@@ -22,6 +22,7 @@ import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
+import 'package:flutter_all_in_one/modules/tab_layout/tab_layout_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
 import 'package:flutter_all_in_one/modules/timepicker/timepicker_screen.dart';
@@ -102,7 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Toolbar Menu",
     "Navigation Drawer",
     "Bottom AppBar",
-    "View Pager"
+    "View Pager",
+    "Tab Layout"
   ];
 
   @override
@@ -241,6 +243,10 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.viewPager:
       navigateTo(context, const ViewPagerScreen());
       break;
+    case DashboardItemsType.tabLayout:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const TabLayoutScreen()));
+      break;
   }
 }
 
@@ -283,7 +289,8 @@ enum DashboardItemsType {
   toolbarMenu,
   navigationDrawer,
   bottomAppbar,
-  viewPager;
+  viewPager,
+  tabLayout;
 }
 
 DashboardItemsType getListItemType(int index) {
