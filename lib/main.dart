@@ -3,6 +3,7 @@ import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/bottom_appbar/bottom_appbar_screen.dart';
 import 'package:flutter_all_in_one/modules/bottom_navigation/bottom_navigation_screen.dart';
+import 'package:flutter_all_in_one/modules/bottom_sheet/bottom_sheet_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
@@ -106,7 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Bottom AppBar",
     "View Pager",
     "Tab Layout",
-    "Bottom Navigation"
+    "Bottom Navigation",
+    "Bottom Sheet"
   ];
 
   @override
@@ -252,6 +254,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.bottomNavigation:
       navigateTo(context, const BottomNavigationScreen());
       break;
+    case DashboardItemsType.bottomSheet:
+      navigateTo(context, const BottomSheetScreen());
+      break;
   }
 }
 
@@ -296,7 +301,8 @@ enum DashboardItemsType {
   bottomAppbar,
   viewPager,
   tabLayout,
-  bottomNavigation;
+  bottomNavigation,
+  bottomSheet;
 }
 
 DashboardItemsType getListItemType(int index) {
