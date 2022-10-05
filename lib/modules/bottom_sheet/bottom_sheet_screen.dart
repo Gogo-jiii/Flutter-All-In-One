@@ -33,6 +33,18 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
               },
               child: const Text("Persistent Bottom Sheet"),
             ),
+            ElevatedButton(
+              onPressed: () {
+                doFullPagePersistentBottomSheet();
+              },
+              child: const Text("Full Page Persistent Bottom Sheet"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                doSpecificHeightPersistentBottomSheet();
+              },
+              child: const Text("Specific Height Persistent Bottom Sheet"),
+            ),
           ],
         ),
       ),
@@ -42,44 +54,125 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
   void doModelBottomSheet() {
     showModalBottomSheet(
         isDismissible: false,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
         context: context,
         builder: (BuildContext context) {
-          return SizedBox(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Some Text"),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Close"),
-                  ),
-                ],
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                leading: const Icon(Icons.add),
+                title: const Text("Add"),
               ),
-            ),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                leading: const Icon(Icons.account_box),
+                title: const Text("Account"),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                leading: const Icon(Icons.share),
+                title: const Text("Share"),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                leading: const Icon(Icons.delete),
+                title: const Text("Delete"),
+              ),
+            ],
           );
         });
   }
 
   void doPersistentBottomSheet() {
-    _scaffoldKey.currentState?.showBottomSheet(elevation: 8, (context) {
-      return SizedBox(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("Some Text"),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Close"),
-              ),
-            ],
+    _scaffoldKey.currentState?.showBottomSheet(
+        elevation: 8,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
           ),
+        ), (context) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            leading: const Icon(Icons.add),
+            title: const Text("Add"),
+          ),
+        ],
+      );
+    });
+  }
+
+  void doFullPagePersistentBottomSheet() {
+    _scaffoldKey.currentState?.showBottomSheet(
+        elevation: 8,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ), (context) {
+      return Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              leading: const Icon(Icons.add),
+              title: const Text("Add"),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  void doSpecificHeightPersistentBottomSheet() {
+    _scaffoldKey.currentState?.showBottomSheet(
+        elevation: 8,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ), (context) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              leading: const Icon(Icons.add),
+              title: const Text("Add"),
+            ),
+          ],
         ),
       );
     });
