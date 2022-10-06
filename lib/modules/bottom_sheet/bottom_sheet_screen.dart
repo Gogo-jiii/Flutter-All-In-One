@@ -45,6 +45,12 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
               },
               child: const Text("Specific Height Persistent Bottom Sheet"),
             ),
+            ElevatedButton(
+              onPressed: () {
+                doScrollableDraggableSheet();
+              },
+              child: const Text("Scrollable Modal Bottom Sheet"),
+            ),
           ],
         ),
       ),
@@ -176,5 +182,81 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
         ),
       );
     });
+  }
+
+  void doScrollableDraggableSheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return DraggableScrollableSheet(
+            snap: true,
+            snapSizes: const [0.1, 0.3, 0.5],
+            initialChildSize: 0.5,
+            minChildSize: 0.1,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return ListView(
+                controller: scrollController,
+                children: const [
+                  ListTile(
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      "A",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.account_box),
+                    title: Text(
+                      "B",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.access_alarm),
+                    title: Text(
+                      "C",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.camera_alt),
+                    title: Text(
+                      "D",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.add),
+                    title: Text(
+                      "E",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.account_box),
+                    title: Text(
+                      "F",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.access_alarm),
+                    title: Text(
+                      "G",
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.camera_alt),
+                    title: Text(
+                      "H",
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        });
   }
 }

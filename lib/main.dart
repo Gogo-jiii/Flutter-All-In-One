@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "View Pager",
     "Tab Layout",
     "Bottom Navigation",
-    "Bottom Sheet"
+    "Bottom Sheet",
   ];
 
   @override
