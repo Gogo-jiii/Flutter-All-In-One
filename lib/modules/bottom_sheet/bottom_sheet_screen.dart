@@ -11,6 +11,35 @@ class BottomSheetScreen extends StatefulWidget {
 class _BottomSheetScreenState extends State<BottomSheetScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  List<String> list = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +79,18 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                 doScrollableDraggableSheet();
               },
               child: const Text("Scrollable Modal Bottom Sheet"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                doListviewSheet();
+              },
+              child: const Text("Listview Bottom Sheet"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                doScrollableDraggableListviewSheet();
+              },
+              child: const Text("Scrollable Draggable Listview Bottom Sheet"),
             ),
           ],
         ),
@@ -254,6 +295,73 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                     ),
                   ),
                 ],
+              );
+            },
+          );
+        });
+  }
+
+  void doScrollableDraggableListviewSheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return DraggableScrollableSheet(
+            snap: true,
+            snapSizes: const [0.1, 0.3, 0.5],
+            initialChildSize: 0.5,
+            minChildSize: 0.1,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return Container(
+                margin: const EdgeInsets.all(16),
+                child: Center(
+                  child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: list.length,
+                      itemBuilder: (contex, index) {
+                        return getListItem(context, list, index);
+                      }),
+                ),
+              );
+            },
+          );
+        });
+  }
+
+  void doListviewSheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return DraggableScrollableSheet(
+            snap: true,
+            snapSizes: const [0.1, 0.3, 0.5],
+            initialChildSize: 0.5,
+            minChildSize: 0.1,
+            maxChildSize: 0.9,
+            expand: false,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return Container(
+                margin: const EdgeInsets.all(16),
+                child: Center(
+                  child: ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (contex, index) {
+                        return getListItem(context, list, index);
+                      }),
+                ),
               );
             },
           );
