@@ -15,6 +15,7 @@ import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/http/http_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
+import 'package:flutter_all_in_one/modules/interactive_viewer/interactive_viewer_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_screen.dart';
@@ -109,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Tab Layout",
     "Bottom Navigation",
     "Bottom Sheet",
+    "Interactive Viewer"
   ];
 
   @override
@@ -257,6 +259,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.bottomSheet:
       navigateTo(context, const BottomSheetScreen());
       break;
+    case DashboardItemsType.interactiveViewer:
+      navigateTo(context, const InteractiveViewerScreen());
+      break;
   }
 }
 
@@ -302,7 +307,8 @@ enum DashboardItemsType {
   viewPager,
   tabLayout,
   bottomNavigation,
-  bottomSheet;
+  bottomSheet,
+  interactiveViewer;
 }
 
 DashboardItemsType getListItemType(int index) {
