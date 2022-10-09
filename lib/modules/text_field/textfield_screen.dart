@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 import '../common_widgets/common_widgets.dart';
 
@@ -11,6 +14,8 @@ class TextFieldScreen extends StatefulWidget {
 }
 
 class _TextFieldScreenState extends State<TextFieldScreen> {
+  var _counterText = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,17 +173,21 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
                 Container(
                   margin: const EdgeInsets.all(16),
-                  child: const TextField(
+                  child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        _counterText = (10 - value.length).toString();
+                      });
+                    },
                     maxLength: 10,
                     maxLengthEnforcement: MaxLengthEnforcement.enforced,
                     decoration: InputDecoration(
-                        label: Text("Counter"),
-                        counter: Text("10"),
-                        counterStyle: TextStyle(
+                        label: const Text("Counter"),
+                        counterStyle: const TextStyle(
                             color: Colors.red,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
-                        counterText: "Remaining:"),
+                        counterText: "Remaining: $_counterText"),
                   ),
                 ),
                 Container(
@@ -324,8 +333,27 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                   margin: const EdgeInsets.all(16),
                   child: const TextField(
                     obscureText: true,
-                    decoration: InputDecoration(labelText: "Hide text"),
-                    obscuringCharacter: "#",
+                    decoration: InputDecoration(labelText: "Password Field"),
+                    obscuringCharacter: "*",
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(16),
+                  child: const TextField(
+                    cursorColor: Colors.red,
+                    cursorRadius: Radius.circular(8),
+                    cursorWidth: 5,
+                    decoration: InputDecoration(labelText: "Cursor"),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(16),
+                  child: TextField(
+                    onTap: () {
+                      showToast("on clicked");
+                    },
+                    decoration: const InputDecoration(
+                        labelText: "Clicked the text field"),
                   ),
                 ),
               ],
