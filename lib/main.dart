@@ -10,6 +10,7 @@ import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
+import 'package:flutter_all_in_one/modules/form/form_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
@@ -78,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Toast",
     "Button",
     "Text Field",
+    "Form",
     "Get Text From Text Field",
     "Text Watcher",
     "Slider",
@@ -160,6 +162,9 @@ void navigate(BuildContext context, int index) {
       break;
     case DashboardItemsType.textField:
       navigateTo(context, const TextFieldScreen());
+      break;
+    case DashboardItemsType.form:
+      navigateTo(context, const FormScreen());
       break;
     case DashboardItemsType.getTextFromTextField:
       navigateTo(context, const GetTextFromTextFieldScreen());
@@ -276,6 +281,7 @@ enum DashboardItemsType {
   toast,
   button,
   textField,
+  form,
   getTextFromTextField,
   textWatcher,
   slider,
