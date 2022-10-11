@@ -15,6 +15,7 @@ class TextFieldScreen extends StatefulWidget {
 
 class _TextFieldScreenState extends State<TextFieldScreen> {
   var _counterText = "";
+  var _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -331,9 +332,19 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
                 ),
                 Container(
                   margin: const EdgeInsets.all(16),
-                  child: const TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: "Password Field"),
+                  child: TextField(
+                    obscureText: _isObscure,
+                    decoration: InputDecoration(
+                      labelText: "Password Field",
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                        child: _setEyeIcon(),
+                      ),
+                    ),
                     obscuringCharacter: "*",
                   ),
                 ),
@@ -360,5 +371,13 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
             ),
           ),
         ));
+  }
+
+  Icon _setEyeIcon() {
+    if (_isObscure) {
+      return const Icon(Icons.visibility);
+    } else {
+      return const Icon(Icons.visibility_off);
+    }
   }
 }
