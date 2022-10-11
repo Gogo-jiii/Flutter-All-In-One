@@ -41,6 +41,7 @@ import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
+import 'modules/system_bars/system_bars_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -112,7 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Tab Layout",
     "Bottom Navigation",
     "Bottom Sheet",
-    "Interactive Viewer"
+    "Interactive Viewer",
+    "System Bars"
   ];
 
   @override
@@ -267,6 +269,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.interactiveViewer:
       navigateTo(context, const InteractiveViewerScreen());
       break;
+    case DashboardItemsType.systemBars:
+      navigateTo(context, const SystemBarsScreen());
+      break;
   }
 }
 
@@ -314,7 +319,8 @@ enum DashboardItemsType {
   tabLayout,
   bottomNavigation,
   bottomSheet,
-  interactiveViewer;
+  interactiveViewer,
+  systemBars;
 }
 
 DashboardItemsType getListItemType(int index) {
