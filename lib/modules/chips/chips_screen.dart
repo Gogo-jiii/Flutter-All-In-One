@@ -17,19 +17,118 @@ class Mychip {
 }
 
 class _ChipScreenState extends State<ChipScreen> {
-  var _selectedChoiceChip = [false, false];
-  var _selectedInputChip = [false, false];
-  var _selectedFilterChip = [false, false];
-
-  final List<Mychip> _inputChipList = <Mychip>[
-    Mychip('Input chip 3', false),
-    Mychip('Input chip 4', false),
+  final List<Mychip> _choiceChips = <Mychip>[
+    Mychip('Chip 1', false),
+    Mychip('Chip 2', false),
   ];
+
+  final List<Mychip> _inputChips = <Mychip>[
+    Mychip('Chip 1', false),
+    Mychip('Chip 2', false),
+  ];
+
+  final List<Mychip> _filterChips = <Mychip>[
+    Mychip('Chip 1', false),
+    Mychip('Chip 2', false),
+  ];
+
+  final List<Mychip> _deleteChips = <Mychip>[
+    Mychip('Chip 1', false),
+    Mychip('Chip 2', false),
+  ];
+
+  ListView get choiceChipList {
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: _choiceChips.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.all(8),
+            child: ChoiceChip(
+                selectedColor: Colors.greenAccent,
+                padding: const EdgeInsets.all(16),
+                elevation: 8,
+                backgroundColor: Colors.blue,
+                onSelected: (value) {
+                  setState(() {
+                    _choiceChips[index].isSelected = value;
+                  });
+                  if (value == true) {
+                    showToast("Selected");
+                  }
+                },
+                label: Text(
+                  _choiceChips[index].name,
+                  style: TextStyle(color: Colors.white),
+                ),
+                selected: _choiceChips[index].isSelected),
+          );
+        });
+  }
+
+  ListView get inputChipList {
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: _inputChips.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.all(8),
+            child: InputChip(
+              showCheckmark: true,
+              checkmarkColor: Colors.white,
+              selectedColor: Colors.greenAccent,
+              selected: _inputChips[index].isSelected,
+              onSelected: (value) {
+                setState(() {
+                  _inputChips[index].isSelected = value;
+                });
+              },
+              backgroundColor: Colors.amber,
+              padding: const EdgeInsets.all(16),
+              pressElevation: 16,
+              elevation: 8,
+              label: Text(
+                _inputChips[index].name,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        });
+  }
+
+  ListView get filterChipList {
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: _filterChips.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.all(8),
+            child: FilterChip(
+                showCheckmark: true,
+                checkmarkColor: Colors.white,
+                selected: _filterChips[index].isSelected,
+                selectedColor: Colors.lightGreenAccent,
+                pressElevation: 16,
+                elevation: 8,
+                padding: const EdgeInsets.all(16),
+                backgroundColor: Colors.black,
+                label: Text(
+                  _filterChips[index].name,
+                  style: TextStyle(color: Colors.white),
+                ),
+                onSelected: (value) {
+                  setState(() {
+                    _filterChips[index].isSelected = value;
+                  });
+                }),
+          );
+        });
+  }
 
   ListView get deleteChipList {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: _inputChipList.length,
+        itemCount: _deleteChips.length,
         itemBuilder: (context, index) {
           return Container(
             margin: const EdgeInsets.all(8),
@@ -39,16 +138,16 @@ class _ChipScreenState extends State<ChipScreen> {
               showCheckmark: true,
               onDeleted: () {
                 setState(() {
-                  _inputChipList.removeWhere((value) {
-                    return value == _inputChipList[index];
+                  _deleteChips.removeWhere((value) {
+                    return value == _deleteChips[index];
                   });
                 });
               },
               checkmarkColor: Colors.white,
-              selected: _inputChipList[index].isSelected,
+              selected: _deleteChips[index].isSelected,
               onSelected: (value) {
                 setState(() {
-                  _inputChipList[index].isSelected = value;
+                  _deleteChips[index].isSelected = value;
                 });
               },
               selectedColor: Colors.lightGreenAccent,
@@ -65,7 +164,7 @@ class _ChipScreenState extends State<ChipScreen> {
         });
   }
 
-  final _singleChoiceChipList = ["Chip 5", "Chip 6"];
+  final _singleChoiceChipList = ["Chip 1", "Chip 2"];
   int? _value = -1;
   ListView get singleChoiceChipMaker {
     return ListView.builder(
@@ -126,18 +225,7 @@ class _ChipScreenState extends State<ChipScreen> {
                   ),
                 ),
               ),
-              getDivider(),
-              const Text(
-                "Action Chip",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
+              getDivider("Action Chip"),
               ActionChip(
                   backgroundColor: Colors.deepOrange,
                   padding: const EdgeInsets.all(16),
@@ -150,192 +238,15 @@ class _ChipScreenState extends State<ChipScreen> {
                   onPressed: () {
                     showToast("Action chip clicked.");
                   }),
-              getDivider(),
-              const Text(
-                "Choice Chips",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ChoiceChip(
-                      selectedColor: Colors.greenAccent,
-                      padding: const EdgeInsets.all(16),
-                      elevation: 8,
-                      backgroundColor: Colors.blue,
-                      onSelected: (value) {
-                        setState(() {
-                          _selectedChoiceChip[0] = value;
-                        });
-                        if (value == true) {
-                          showToast("Selected");
-                        }
-                      },
-                      label: const Text(
-                        "Choice Chip 1",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      selected: _selectedChoiceChip[0]),
-                  ChoiceChip(
-                      selectedColor: Colors.greenAccent,
-                      padding: const EdgeInsets.all(16),
-                      elevation: 8,
-                      backgroundColor: Colors.blue,
-                      onSelected: (value) {
-                        setState(() {
-                          _selectedChoiceChip[1] = value;
-                        });
-                        if (value == true) {
-                          showToast("Selected");
-                        }
-                      },
-                      label: const Text(
-                        "Choice Chip 2",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      selected: _selectedChoiceChip[1]),
-                ],
-              ),
-              getDivider(),
-              const Text(
-                "Input Chips",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InputChip(
-                    showCheckmark: true,
-                    checkmarkColor: Colors.white,
-                    selectedColor: Colors.greenAccent,
-                    selected: _selectedInputChip[0],
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedInputChip[0] = value;
-                      });
-                    },
-                    backgroundColor: Colors.amber,
-                    padding: const EdgeInsets.all(16),
-                    pressElevation: 16,
-                    elevation: 8,
-                    label: const Text(
-                      "Input chip 1",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  InputChip(
-                    selected: _selectedInputChip[1],
-                    showCheckmark: true,
-                    checkmarkColor: Colors.white,
-                    selectedColor: Colors.greenAccent,
-                    onSelected: (value) {
-                      setState(() {
-                        _selectedInputChip[1] = value;
-                      });
-                    },
-                    backgroundColor: Colors.amber,
-                    padding: const EdgeInsets.all(16),
-                    pressElevation: 16,
-                    elevation: 8,
-                    label: const Text(
-                      "Input chip 2",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              getDivider(),
-              const Text(
-                "Filter Chips",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FilterChip(
-                      showCheckmark: true,
-                      checkmarkColor: Colors.white,
-                      selected: _selectedFilterChip[0],
-                      selectedColor: Colors.lightGreenAccent,
-                      pressElevation: 16,
-                      elevation: 8,
-                      padding: const EdgeInsets.all(16),
-                      backgroundColor: Colors.black,
-                      label: const Text(
-                        "Filter Chip 1",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onSelected: (value) {
-                        setState(() {
-                          _selectedFilterChip[0] = value;
-                        });
-                      }),
-                  FilterChip(
-                      showCheckmark: true,
-                      checkmarkColor: Colors.white,
-                      selected: _selectedFilterChip[1],
-                      selectedColor: Colors.lightGreenAccent,
-                      pressElevation: 16,
-                      elevation: 8,
-                      padding: const EdgeInsets.all(16),
-                      backgroundColor: Colors.black,
-                      label: const Text(
-                        "Filter Chip 2",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onSelected: (value) {
-                        setState(() {
-                          _selectedFilterChip[1] = value;
-                        });
-                      }),
-                ],
-              ),
-              getDivider(),
-              const Text(
-                "Single Choice Chip",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
+              getDivider("Choice Chip"),
+              SizedBox(height: 100, child: choiceChipList),
+              getDivider("Input Chip"),
+              SizedBox(height: 100, child: inputChipList),
+              getDivider("Filter Chip"),
+              SizedBox(height: 100, child: filterChipList),
+              getDivider("Single Choice Chip"),
               SizedBox(height: 100, child: singleChoiceChipMaker),
-              getDivider(),
-              const Text(
-                "Delete Chips",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
+              getDivider("Delete Chip"),
               SizedBox(height: 100, child: deleteChipList),
             ],
           ),
@@ -344,9 +255,9 @@ class _ChipScreenState extends State<ChipScreen> {
     );
   }
 
-  Widget getDivider() {
+  Widget getDivider(String title) {
     return Column(
-      children: const [
+      children: [
         SizedBox(
           height: 16,
         ),
@@ -355,6 +266,17 @@ class _ChipScreenState extends State<ChipScreen> {
         ),
         SizedBox(
           height: 16,
+        ),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(
+          height: 8,
         ),
       ],
     );
