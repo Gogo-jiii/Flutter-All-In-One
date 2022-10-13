@@ -8,6 +8,7 @@ import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/chips/chips_screen.dart';
+import 'package:flutter_all_in_one/modules/clipboard/clipboard_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
@@ -116,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Bottom Sheet",
     "Interactive Viewer",
     "System Bars",
-    "Chips"
+    "Chips",
+    "Clipboard"
   ];
 
   @override
@@ -277,6 +279,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.chips:
       navigateTo(context, const ChipScreen());
       break;
+    case DashboardItemsType.clipBoard:
+      navigateTo(context, ClipBoardScreen());
+      break;
   }
 }
 
@@ -326,7 +331,8 @@ enum DashboardItemsType {
   bottomSheet,
   interactiveViewer,
   systemBars,
-  chips;
+  chips,
+  clipBoard;
 }
 
 DashboardItemsType getListItemType(int index) {
