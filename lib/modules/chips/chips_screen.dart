@@ -14,6 +14,11 @@ class Mychip {
 
   String name;
   bool isSelected;
+
+  @override
+  String toString() {
+    return 'Mychip{name: $name, isSelected: $isSelected}';
+  }
 }
 
 class _ChipScreenState extends State<ChipScreen> {
@@ -32,7 +37,7 @@ class _ChipScreenState extends State<ChipScreen> {
     Mychip('Chip 2', false),
   ];
 
-  final List<Mychip> _deleteChips = <Mychip>[
+  List<Mychip> _deleteChips = <Mychip>[
     Mychip('Chip 1', false),
     Mychip('Chip 2', false),
   ];
@@ -138,9 +143,7 @@ class _ChipScreenState extends State<ChipScreen> {
               showCheckmark: true,
               onDeleted: () {
                 setState(() {
-                  _deleteChips.removeWhere((value) {
-                    return value == _deleteChips[index];
-                  });
+                  _deleteChips.removeAt(index);
                 });
               },
               checkmarkColor: Colors.white,
@@ -156,7 +159,7 @@ class _ChipScreenState extends State<ChipScreen> {
               padding: const EdgeInsets.all(16),
               backgroundColor: Colors.blue,
               label: Text(
-                _singleChoiceChipList[index],
+                _deleteChips[index].name,
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -164,12 +167,12 @@ class _ChipScreenState extends State<ChipScreen> {
         });
   }
 
-  final _singleChoiceChipList = ["Chip 1", "Chip 2"];
+  final _singleChoiceChips = ["Chip 1", "Chip 2"];
   int? _value = -1;
-  ListView get singleChoiceChipMaker {
+  ListView get singleChoiceChipsList {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: _singleChoiceChipList.length,
+        itemCount: _singleChoiceChips.length,
         itemBuilder: (context, index) {
           return Container(
             margin: const EdgeInsets.all(8),
@@ -186,7 +189,7 @@ class _ChipScreenState extends State<ChipScreen> {
               padding: const EdgeInsets.all(16),
               backgroundColor: Colors.blue,
               label: Text(
-                _singleChoiceChipList[index],
+                _singleChoiceChips[index],
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -245,7 +248,7 @@ class _ChipScreenState extends State<ChipScreen> {
               getDivider("Filter Chip"),
               SizedBox(height: 100, child: filterChipList),
               getDivider("Single Choice Chip"),
-              SizedBox(height: 100, child: singleChoiceChipMaker),
+              SizedBox(height: 100, child: singleChoiceChipsList),
               getDivider("Delete Chip"),
               SizedBox(height: 100, child: deleteChipList),
             ],
