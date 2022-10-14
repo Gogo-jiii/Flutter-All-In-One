@@ -25,6 +25,7 @@ import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_s
 import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
+import 'package:flutter_all_in_one/modules/scrolling_toolbar/scrolling_toolbar_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
@@ -118,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Interactive Viewer",
     "System Bars",
     "Chips",
-    "Clipboard"
+    "Clipboard",
+    "Scrolling Toolbar"
   ];
 
   @override
@@ -282,6 +284,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.clipBoard:
       navigateTo(context, ClipBoardScreen());
       break;
+    case DashboardItemsType.scrollingToolbar:
+      navigateTo(context, ScrollingToolbarScreen());
+      break;
   }
 }
 
@@ -332,7 +337,8 @@ enum DashboardItemsType {
   interactiveViewer,
   systemBars,
   chips,
-  clipBoard;
+  clipBoard,
+  scrollingToolbar;
 }
 
 DashboardItemsType getListItemType(int index) {
