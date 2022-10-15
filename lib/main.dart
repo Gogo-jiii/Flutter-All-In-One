@@ -13,6 +13,7 @@ import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_scree
 import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/form/form_screen.dart';
+import 'package:flutter_all_in_one/modules/future_builder/future_builder_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
@@ -26,9 +27,11 @@ import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/scrolling_toolbar/scrolling_toolbar_screen.dart';
+import 'package:flutter_all_in_one/modules/shared_preference/shared_preference_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
 import 'package:flutter_all_in_one/modules/spacer/spacer_screen.dart';
+import 'package:flutter_all_in_one/modules/sqlite/sqlite_screen.dart';
 import 'package:flutter_all_in_one/modules/tab_layout/tab_layout_screen.dart';
 import 'package:flutter_all_in_one/modules/text_field/textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/textwatcher/textwatcher_screen.dart';
@@ -120,7 +123,10 @@ class _MyHomePageState extends State<MyHomePage> {
     "System Bars",
     "Chips",
     "Clipboard",
-    "Scrolling Toolbar"
+    "Scrolling Toolbar",
+    "Future builder",
+    "Shared Preference",
+    "SQLite"
   ];
 
   @override
@@ -287,6 +293,15 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.scrollingToolbar:
       navigateTo(context, ScrollingToolbarScreen());
       break;
+    case DashboardItemsType.futureBuilder:
+      navigateTo(context, const FutureBuilderScreen());
+      break;
+    case DashboardItemsType.sharedPreference:
+      navigateTo(context, const SharedPreferenceScreen());
+      break;
+    case DashboardItemsType.sqlite:
+      navigateTo(context, const SqliteScreen());
+      break;
   }
 }
 
@@ -338,7 +353,11 @@ enum DashboardItemsType {
   systemBars,
   chips,
   clipBoard,
-  scrollingToolbar;
+  scrollingToolbar,
+  futureBuilder,
+  sharedPreference,
+  sqlite,
+  ;
 }
 
 DashboardItemsType getListItemType(int index) {
