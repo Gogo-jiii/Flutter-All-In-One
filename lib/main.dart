@@ -23,6 +23,7 @@ import 'package:flutter_all_in_one/modules/interactive_viewer/interactive_viewer
 import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_screen.dart';
+import 'package:flutter_all_in_one/modules/permissions/permissions_screen.dart';
 import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
@@ -126,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Scrolling Toolbar",
     "Future builder",
     "Shared Preference",
-    "SQLite"
+    "SQLite",
+    "Permissions"
   ];
 
   @override
@@ -302,6 +304,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.sqlite:
       navigateTo(context, const SqliteScreen());
       break;
+    case DashboardItemsType.permissions:
+      navigateTo(context, const PermissionsScreen());
+      break;
   }
 }
 
@@ -357,7 +362,7 @@ enum DashboardItemsType {
   futureBuilder,
   sharedPreference,
   sqlite,
-  ;
+  permissions;
 }
 
 DashboardItemsType getListItemType(int index) {
