@@ -25,6 +25,7 @@ import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_screen.dart';
 import 'package:flutter_all_in_one/modules/permissions/permissions_screen.dart';
 import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
+import 'package:flutter_all_in_one/modules/provider/provider_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/scrolling_toolbar/scrolling_toolbar_screen.dart';
@@ -42,12 +43,14 @@ import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.da
 import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart';
 import 'package:flutter_all_in_one/modules/view_pager/view_pager_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
+import 'modules/provider/provider_model.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 
 void main() {
@@ -60,12 +63,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => ProviderModel())],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter All in One'),
       ),
-      home: const MyHomePage(title: 'Flutter All in One'),
     );
   }
 }
@@ -128,7 +134,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Future builder",
     "Shared Preference",
     "SQLite",
-    "Permissions"
+    "Permissions",
+    "Provider"
   ];
 
   @override
@@ -307,6 +314,10 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.permissions:
       navigateTo(context, const PermissionsScreen());
       break;
+    case DashboardItemsType.provider:
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => const ProviderScreen()));
+      break;
   }
 }
 
@@ -362,7 +373,8 @@ enum DashboardItemsType {
   futureBuilder,
   sharedPreference,
   sqlite,
-  permissions;
+  permissions,
+  provider;
 }
 
 DashboardItemsType getListItemType(int index) {

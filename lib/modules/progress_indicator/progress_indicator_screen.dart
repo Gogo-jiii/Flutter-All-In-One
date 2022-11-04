@@ -53,7 +53,7 @@ class _ProgressIndicatorScreenState extends State<ProgressIndicatorScreen>
                 color: Colors.orange,
                 value: controller.value,
                 semanticsLabel: 'Circular progress indicator',
-              )
+              ),
             ],
           ),
         ),
