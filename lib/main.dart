@@ -11,8 +11,6 @@ import 'package:flutter_all_in_one/modules/chips/chips_screen.dart';
 import 'package:flutter_all_in_one/modules/clipboard/clipboard_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
-import 'package:flutter_all_in_one/modules/file_picker/file_picker_screen.dart';
-import 'package:flutter_all_in_one/modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/form/form_screen.dart';
 import 'package:flutter_all_in_one/modules/future_builder/future_builder_screen.dart';
@@ -54,7 +52,6 @@ import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/provider/provider_model.dart';
-import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 
 void main() {
@@ -143,10 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
     "SQLite",
     "Permissions",
     "Provider",
-    "Storage",
-    "File Picker",
-    "Finger Print Auth",
     "Notification"
+    // "Storage",
+    // "File Picker",
+    // "Finger Print Auth",
   ];
 
   @override
@@ -329,18 +326,18 @@ void navigate(BuildContext context, int index) {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => const ProviderScreen()));
       break;
-    case DashboardItemsType.storage:
-      navigateTo(context, const StorageScreen());
-      break;
-    case DashboardItemsType.filePicker:
-      navigateTo(context, const FilePickerScreen());
-      break;
-    case DashboardItemsType.fingerPrintAuth:
-      navigateTo(context, const FingerPrintAuth());
-      break;
     case DashboardItemsType.notification:
       navigateTo(context, const NotificationScreen());
       break;
+    // case DashboardItemsType.storage:
+    //   navigateTo(context, const StorageScreen());
+    //   break;
+    // case DashboardItemsType.filePicker:
+    //   navigateTo(context, const FilePickerScreen());
+    //   break;
+    // case DashboardItemsType.fingerPrintAuth:
+    //   navigateTo(context, const FingerPrintAuth());
+    //   break;
   }
 }
 
@@ -398,10 +395,10 @@ enum DashboardItemsType {
   sqlite,
   permissions,
   provider,
-  storage,
-  filePicker,
-  fingerPrintAuth,
   notification;
+  // storage,
+  // filePicker,
+  // fingerPrintAuth,
 }
 
 DashboardItemsType getListItemType(int index) {

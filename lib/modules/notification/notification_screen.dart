@@ -98,6 +98,24 @@ class _NotificationScreenState extends State<NotificationScreen> {
               },
               child: const Text("Show Big Text Notification"),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showInfiniteProgressNotification();
+              },
+              child: const Text("Show Notification With Infinite Progress"),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showProgressNotification();
+              },
+              child: const Text("Show Notification With Progress"),
+            ),
           ],
         ),
       ),
@@ -301,5 +319,61 @@ class _NotificationScreenState extends State<NotificationScreen> {
       platformChannelSpecifics,
       payload: 'Default_Sound',
     );
+  }
+
+  void showInfiniteProgressNotification() async {
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+        "a", "b",
+        channelDescription: "c",
+        importance: Importance.max,
+        color: Colors.green,
+        priority: Priority.max,
+        enableVibration: true,
+        enableLights: true,
+        ticker: "Ticker...",
+        autoCancel: true,
+        subText: "This is subtext",
+        colorized: true,
+        showProgress: true,
+        indeterminate: true);
+
+    var platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'New Post',
+      'How to Show Notification in Flutter',
+      platformChannelSpecifics,
+      payload: 'Default_Sound',
+    );
+  }
+
+  void showProgressNotification() async {
+    final int progressId = 100;
+    const int maxProgress = 5;
+
+    for (int i = 0; i <= maxProgress; i++) {
+      await Future<void>.delayed(const Duration(seconds: 1), () async {
+        final AndroidNotificationDetails androidNotificationDetails =
+            AndroidNotificationDetails('progress channel', 'progress channel',
+                channelDescription: 'progress channel description',
+                channelShowBadge: false,
+                importance: Importance.max,
+                priority: Priority.high,
+                onlyAlertOnce: true,
+                showProgress: true,
+                maxProgress: maxProgress,
+                progress: i);
+        final NotificationDetails notificationDetails =
+            NotificationDetails(android: androidNotificationDetails);
+        await flutterLocalNotificationsPlugin.show(
+            progressId,
+            'progress notification title',
+            'progress notification body',
+            notificationDetails,
+            payload: 'item x');
+      });
+    }
   }
 }
