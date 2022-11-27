@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_in_one/main.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
+import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -26,7 +28,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
     var initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: _onNotificationClicked);
   }
 
   @override
@@ -115,6 +118,24 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 showProgressNotification();
               },
               child: const Text("Show Notification With Progress"),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showBigPictureNotification();
+              },
+              child: const Text("Show Notification With Big Picture"),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showNotificationWithClickEvent();
+              },
+              child: const Text("Show Notification With On Click Event"),
             ),
           ],
         ),
@@ -374,6 +395,70 @@ class _NotificationScreenState extends State<NotificationScreen> {
             notificationDetails,
             payload: 'item x');
       });
+    }
+  }
+
+  void showBigPictureNotification() async {
+    const BigPictureStyleInformation bigPictureStyleInformation =
+        BigPictureStyleInformation(
+            DrawableResourceAndroidBitmap('@drawable/it_wala'));
+
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+        "a", "b",
+        channelDescription: "c",
+        importance: Importance.max,
+        color: Colors.green,
+        priority: Priority.max,
+        enableVibration: true,
+        enableLights: true,
+        ticker: "Ticker...",
+        autoCancel: true,
+        subText: "This is subtext",
+        colorized: true,
+        styleInformation: bigPictureStyleInformation);
+
+    var platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'New Post',
+      'How to Show Notification in Flutter',
+      platformChannelSpecifics,
+      payload: 'Default_Sound',
+    );
+  }
+
+  void showNotificationWithClickEvent() async {
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+        "a", "b",
+        channelDescription: "c",
+        importance: Importance.max,
+        color: Colors.green,
+        priority: Priority.max,
+        enableVibration: true,
+        enableLights: true,
+        ticker: "Ticker...",
+        autoCancel: true,
+        subText: "This is subtext",
+        colorized: true);
+
+    var platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'New Post',
+      'How to Show Notification in Flutter',
+      platformChannelSpecifics,
+      payload: 'On-click',
+    );
+  }
+
+  void _onNotificationClicked(NotificationResponse details) {
+    if (details.payload.toString() == "On-click") {
+      showToast("Clicked");
+      Navigator.push(context, MaterialPageRoute(builder: (_) => MyApp()));
     }
   }
 }
