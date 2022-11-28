@@ -51,6 +51,7 @@ import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
+import 'modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'modules/provider/provider_model.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 
@@ -140,10 +141,10 @@ class _MyHomePageState extends State<MyHomePage> {
     "SQLite",
     "Permissions",
     "Provider",
-    "Notification"
+    "Notification",
+    "Finger Print Auth",
     // "Storage",
     // "File Picker",
-    // "Finger Print Auth",
   ];
 
   @override
@@ -329,15 +330,16 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.notification:
       navigateTo(context, const NotificationScreen());
       break;
-    // case DashboardItemsType.storage:
+    case DashboardItemsType.fingerPrintAuth:
+      navigateTo(context, const FingerPrintAuthScreen());
+      break;
+    //case DashboardItemsType.storage:
     //   navigateTo(context, const StorageScreen());
     //   break;
     // case DashboardItemsType.filePicker:
     //   navigateTo(context, const FilePickerScreen());
     //   break;
-    // case DashboardItemsType.fingerPrintAuth:
-    //   navigateTo(context, const FingerPrintAuth());
-    //   break;
+
   }
 }
 
@@ -395,10 +397,11 @@ enum DashboardItemsType {
   sqlite,
   permissions,
   provider,
-  notification;
+  notification,
+  fingerPrintAuth;
   // storage,
   // filePicker,
-  // fingerPrintAuth,
+
 }
 
 DashboardItemsType getListItemType(int index) {
