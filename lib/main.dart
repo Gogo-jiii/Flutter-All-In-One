@@ -53,6 +53,7 @@ import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'modules/provider/provider_model.dart';
+import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 
 void main() {
@@ -143,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Provider",
     "Notification",
     "Finger Print Auth",
-    // "Storage",
+    "Storage",
     // "File Picker",
   ];
 
@@ -333,9 +334,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.fingerPrintAuth:
       navigateTo(context, const FingerPrintAuthScreen());
       break;
-    //case DashboardItemsType.storage:
-    //   navigateTo(context, const StorageScreen());
-    //   break;
+    case DashboardItemsType.storage:
+      navigateTo(context,  const StorageScreen());
+      break;
     // case DashboardItemsType.filePicker:
     //   navigateTo(context, const FilePickerScreen());
     //   break;
@@ -398,8 +399,8 @@ enum DashboardItemsType {
   permissions,
   provider,
   notification,
-  fingerPrintAuth;
-  // storage,
+  fingerPrintAuth,
+  storage;
   // filePicker,
 
 }
