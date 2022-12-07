@@ -51,6 +51,7 @@ import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
 import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
+import 'modules/file_picker/file_picker_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'modules/provider/provider_model.dart';
 import 'modules/storage/storage_screen.dart';
@@ -145,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Notification",
     "Finger Print Auth",
     "Storage",
-    // "File Picker",
+    "File Picker",
   ];
 
   @override
@@ -335,12 +336,11 @@ void navigate(BuildContext context, int index) {
       navigateTo(context, const FingerPrintAuthScreen());
       break;
     case DashboardItemsType.storage:
-      navigateTo(context,  const StorageScreen());
+      navigateTo(context, const StorageScreen());
       break;
-    // case DashboardItemsType.filePicker:
-    //   navigateTo(context, const FilePickerScreen());
-    //   break;
-
+    case DashboardItemsType.filePicker:
+      navigateTo(context, const FilePickerScreen());
+      break;
   }
 }
 
@@ -400,9 +400,8 @@ enum DashboardItemsType {
   provider,
   notification,
   fingerPrintAuth,
-  storage;
-  // filePicker,
-
+  storage,
+  filePicker;
 }
 
 DashboardItemsType getListItemType(int index) {

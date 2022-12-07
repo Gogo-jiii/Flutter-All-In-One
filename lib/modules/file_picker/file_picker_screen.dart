@@ -42,6 +42,15 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
                 },
                 child: const Text("Pick multiple files"),
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  pickOnlyPdfFile();
+                },
+                child: const Text("Pick only pdf file"),
+              ),
             ],
           ),
         ));
@@ -66,6 +75,17 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
       List<File> list = result.paths.map((path) => File(path!)).toList();
       setState(() {
         data = list.toString();
+      });
+    }
+  }
+
+  void pickOnlyPdfFile() async {
+    List<String> extensionList = ["pdf"];
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(type: FileType.custom, allowedExtensions: extensionList);
+    if (result != null) {
+      setState(() {
+        data = result.files.single.name;
       });
     }
   }
