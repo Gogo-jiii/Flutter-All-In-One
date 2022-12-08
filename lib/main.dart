@@ -30,6 +30,7 @@ import 'package:flutter_all_in_one/modules/provider/provider_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
 import 'package:flutter_all_in_one/modules/rating_bar/rating_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/scrolling_toolbar/scrolling_toolbar_screen.dart';
+import 'package:flutter_all_in_one/modules/share_data/share_data_screen.dart';
 import 'package:flutter_all_in_one/modules/shared_preference/shared_preference_screen.dart';
 import 'package:flutter_all_in_one/modules/slider/slider_screen.dart';
 import 'package:flutter_all_in_one/modules/snackbar/snackbar_screen.dart';
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Finger Print Auth",
     "Storage",
     "File Picker",
+    "Share Data",
   ];
 
   @override
@@ -341,6 +343,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.filePicker:
       navigateTo(context, const FilePickerScreen());
       break;
+    case DashboardItemsType.shareData:
+      navigateTo(context, const ShareDataScreen());
+      break;
   }
 }
 
@@ -401,7 +406,8 @@ enum DashboardItemsType {
   notification,
   fingerPrintAuth,
   storage,
-  filePicker;
+  filePicker,
+  shareData;
 }
 
 DashboardItemsType getListItemType(int index) {
