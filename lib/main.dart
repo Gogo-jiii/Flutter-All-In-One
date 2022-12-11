@@ -25,6 +25,7 @@ import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_screen.dart';
 import 'package:flutter_all_in_one/modules/notification/notification_screen.dart';
 import 'package:flutter_all_in_one/modules/permissions/permissions_screen.dart';
+import 'package:flutter_all_in_one/modules/picture_in_picture/picture_in_picture_screen.dart';
 import 'package:flutter_all_in_one/modules/progress_indicator/progress_indicator_screen.dart';
 import 'package:flutter_all_in_one/modules/provider/provider_screen.dart';
 import 'package:flutter_all_in_one/modules/radio_button/radio_button_screen.dart';
@@ -149,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Storage",
     "File Picker",
     "Share Data",
+    "Picture in Picture"
   ];
 
   @override
@@ -346,6 +348,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.shareData:
       navigateTo(context, const ShareDataScreen());
       break;
+    case DashboardItemsType.pictureInPicture:
+      navigateTo(context, const PictureInPictureScreen());
+      break;
   }
 }
 
@@ -407,7 +412,8 @@ enum DashboardItemsType {
   fingerPrintAuth,
   storage,
   filePicker,
-  shareData;
+  shareData,
+  pictureInPicture;
 }
 
 DashboardItemsType getListItemType(int index) {
