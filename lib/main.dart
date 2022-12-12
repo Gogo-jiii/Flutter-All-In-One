@@ -9,6 +9,7 @@ import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/chips/chips_screen.dart';
 import 'package:flutter_all_in_one/modules/clipboard/clipboard_screen.dart';
+import 'package:flutter_all_in_one/modules/encryption/encryption_screen.dart';
 import 'package:flutter_all_in_one/modules/expanded_widget/expanded_widget_screen.dart';
 import 'package:flutter_all_in_one/modules/fab/fab_screen.dart';
 import 'package:flutter_all_in_one/modules/flexible_widget/felxible_widget_screen.dart';
@@ -150,7 +151,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Storage",
     "File Picker",
     "Share Data",
-    "Picture in Picture"
+    "Picture in Picture",
+    "Encryption"
   ];
 
   @override
@@ -351,6 +353,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.pictureInPicture:
       navigateTo(context, const PictureInPictureScreen());
       break;
+    case DashboardItemsType.encryption:
+      navigateTo(context, const EncryptionScreen());
+      break;
   }
 }
 
@@ -413,7 +418,8 @@ enum DashboardItemsType {
   storage,
   filePicker,
   shareData,
-  pictureInPicture;
+  pictureInPicture,
+  encryption;
 }
 
 DashboardItemsType getListItemType(int index) {
