@@ -53,6 +53,7 @@ dependencies:
   floating: ^1.1.1+1
   encrypt: ^5.0.1
   crypto: ^3.0.2
+  webview_flutter: ^3.0.4
 
 flutter_icons:
   android: true

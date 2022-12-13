@@ -47,6 +47,7 @@ import 'package:flutter_all_in_one/modules/toggle_button/toggle_button_screen.da
 import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart';
 import 'package:flutter_all_in_one/modules/view_pager/view_pager_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
+import 'package:flutter_all_in_one/modules/webview/webview_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'modules/common_widgets/common_widgets.dart';
@@ -152,7 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "File Picker",
     "Share Data",
     "Picture in Picture",
-    "Encryption"
+    "Encryption",
+    "Web View"
   ];
 
   @override
@@ -356,6 +358,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.encryption:
       navigateTo(context, const EncryptionScreen());
       break;
+    case DashboardItemsType.webView:
+      navigateTo(context, const WebViewScreen());
+      break;
   }
 }
 
@@ -419,7 +424,8 @@ enum DashboardItemsType {
   filePicker,
   shareData,
   pictureInPicture,
-  encryption;
+  encryption,
+  webView;
 }
 
 DashboardItemsType getListItemType(int index) {
