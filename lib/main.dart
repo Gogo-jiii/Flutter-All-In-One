@@ -20,6 +20,7 @@ import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/http/http_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
+import 'package:flutter_all_in_one/modules/image_picker/image_picker_screen.dart';
 import 'package:flutter_all_in_one/modules/interactive_viewer/interactive_viewer_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
@@ -154,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Share Data",
     "Picture in Picture",
     "Encryption",
-    "Web View"
+    "Web View",
+    "Image Picker"
   ];
 
   @override
@@ -361,6 +363,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.webView:
       navigateTo(context, const WebViewScreen());
       break;
+    case DashboardItemsType.imagePicker:
+      navigateTo(context, const ImagePickerScreen());
+      break;
   }
 }
 
@@ -425,7 +430,8 @@ enum DashboardItemsType {
   shareData,
   pictureInPicture,
   encryption,
-  webView;
+  webView,
+  imagePicker;
 }
 
 DashboardItemsType getListItemType(int index) {
