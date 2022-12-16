@@ -11,20 +11,35 @@ class WebViewScreen extends StatefulWidget {
   State<WebViewScreen> createState() => _WebViewScreenState();
 }
 
-class _WebViewScreenState extends State<WebViewScreen> {
+class _WebViewScreenState extends State<WebViewScreen>
+    with TickerProviderStateMixin {
+  late WebViewController _webViewController;
+  late AnimationController controller;
+  var isProgressIndicatorVisible = true;
+
   @override
   void initState() {
     super.initState();
     // Enable virtual display.
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat();
   }
 
-  late WebViewController _webViewController;
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var loadingPercentage = 0;
-
     return WillPopScope(
       onWillPop: _onBack,
       child: Scaffold(
@@ -32,19 +47,14 @@ class _WebViewScreenState extends State<WebViewScreen> {
         body: Stack(
           children: [
             WebView(
-              onPageStarted: (url) {
+              onPageStarted: (value) {
                 setState(() {
-                  loadingPercentage = 0;
-                });
-              },
-              onProgress: (progress) {
-                setState(() {
-                  loadingPercentage = progress;
+                  isProgressIndicatorVisible = true;
                 });
               },
               onPageFinished: (url) {
                 setState(() {
-                  loadingPercentage = 100;
+                  isProgressIndicatorVisible = false;
                 });
               },
               gestureNavigationEnabled: true,
@@ -58,11 +68,13 @@ class _WebViewScreenState extends State<WebViewScreen> {
               javascriptMode: JavascriptMode.unrestricted,
               initialUrl: 'https://www.google.com',
             ),
-            if (loadingPercentage < 100)
-              CircularProgressIndicator(
+            Visibility(
+              visible: isProgressIndicatorVisible,
+              child: LinearProgressIndicator(
                 color: Colors.orange,
-                value: loadingPercentage / 100.0,
+                value: controller.value,
               ),
+            ),
           ],
         ),
       ),
@@ -76,6 +88,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
       _webViewController.goBack(); // perform webview back operation
       return false;
     }
-    return false;
+    return true;
   }
 }
