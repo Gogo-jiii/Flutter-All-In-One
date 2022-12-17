@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart';
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
@@ -6,6 +9,7 @@ import 'package:flutter_all_in_one/modules/bottom_navigation/bottom_navigation_s
 import 'package:flutter_all_in_one/modules/bottom_sheet/bottom_sheet_screen.dart';
 import 'package:flutter_all_in_one/modules/button/button_screen.dart';
 import 'package:flutter_all_in_one/modules/button_bar/button_bar_screen.dart';
+import 'package:flutter_all_in_one/modules/camera/camera_screen.dart';
 import 'package:flutter_all_in_one/modules/checkbox/checkbox_screen.dart';
 import 'package:flutter_all_in_one/modules/chips/chips_screen.dart';
 import 'package:flutter_all_in_one/modules/clipboard/clipboard_screen.dart';
@@ -49,8 +53,11 @@ import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart
 import 'package:flutter_all_in_one/modules/view_pager/view_pager_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 import 'package:flutter_all_in_one/modules/webview/webview_screen.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:workmanager/workmanager.dart';
 
+import 'modules/background_task_with_notification/background_task_with_notification_screen.dart';
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
@@ -61,6 +68,96 @@ import 'modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'modules/provider/provider_model.dart';
 import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
+import 'modules/workmanager/workmanager_screen.dart';
+
+const simpleTaskKey = "simple_task";
+const periodicTaskKey = "periodic_task";
+const inputDataTaskKey = "input_data_task";
+const delayedTaskKey = "delayed_task";
+const backgroundTaskKey = "background_task";
+
+@pragma(
+    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    switch (task) {
+      case simpleTaskKey:
+        debugPrint("TAG : Simple TASK");
+        for (int i = 0; i < 100; i++) {
+          showToast("Simple Task");
+          sleep(
+            const Duration(seconds: 5),
+          );
+        }
+        break;
+      case periodicTaskKey:
+        showToast("Periodic Task");
+        break;
+      case inputDataTaskKey:
+        var data = inputData!['name'];
+        showToast("Input Data: $data");
+        break;
+      case delayedTaskKey:
+        showToast("Delayed Task");
+        debugPrint("TAG : DELAYED TASK");
+        break;
+      case backgroundTaskKey:
+        debugPrint("TAG : BACKGROUND TASK");
+
+        var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+          "a",
+          "b",
+          channelDescription: "c",
+          importance: Importance.max,
+          color: Colors.green,
+          priority: Priority.max,
+          enableVibration: true,
+          enableLights: true,
+          onlyAlertOnce: true,
+          ongoing: true,
+        );
+
+        var platformChannelSpecifics =
+            NotificationDetails(android: androidPlatformChannelSpecifics);
+
+        var initializationSettingsAndroid =
+            const AndroidInitializationSettings("@mipmap/ic_launcher");
+        var initializationSettings =
+            InitializationSettings(android: initializationSettingsAndroid);
+        FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+            FlutterLocalNotificationsPlugin();
+        await flutterLocalNotificationsPlugin
+            .initialize(initializationSettings);
+
+        showOnGoingNotification(flutterLocalNotificationsPlugin,
+            platformChannelSpecifics, DateTime.now().millisecondsSinceEpoch);
+
+        for (int i = 0; i < 100; i++) {
+          showOnGoingNotification(flutterLocalNotificationsPlugin,
+              platformChannelSpecifics, DateTime.now().millisecondsSinceEpoch);
+          sleep(
+            const Duration(seconds: 5),
+          );
+        }
+
+        break;
+    }
+    return Future.value(true);
+  });
+}
+
+void showOnGoingNotification(
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+    NotificationDetails platformChannelSpecifics,
+    int millisecondsSinceEpoch) async {
+  await flutterLocalNotificationsPlugin.show(
+    0,
+    'New Post',
+    'Foreground Notification: $millisecondsSinceEpoch',
+    platformChannelSpecifics,
+    payload: 'Default_Sound',
+  );
+}
 
 void main() {
   runApp(const MyApp());
@@ -156,7 +253,10 @@ class _MyHomePageState extends State<MyHomePage> {
     "Picture in Picture",
     "Encryption",
     "Web View",
-    "Image Picker"
+    "Image Picker",
+    "Camera",
+    "Work Manager",
+    "Background Task With Notification"
   ];
 
   @override
@@ -366,6 +466,15 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.imagePicker:
       navigateTo(context, const ImagePickerScreen());
       break;
+    case DashboardItemsType.camera:
+      navigateTo(context, const CameraScreen());
+      break;
+    case DashboardItemsType.workManager:
+      navigateTo(context, const WorkManagerScreen());
+      break;
+    case DashboardItemsType.backgroundTaskWithNotification:
+      navigateTo(context, const BackgroundTaskWithNotificationScreen());
+      break;
   }
 }
 
@@ -431,7 +540,10 @@ enum DashboardItemsType {
   pictureInPicture,
   encryption,
   webView,
-  imagePicker;
+  imagePicker,
+  camera,
+  workManager,
+  backgroundTaskWithNotification;
 }
 
 DashboardItemsType getListItemType(int index) {

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:image_picker/image_picker.dart';
