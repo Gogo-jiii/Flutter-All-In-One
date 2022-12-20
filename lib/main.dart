@@ -27,6 +27,7 @@ import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/image_picker/image_picker_screen.dart';
 import 'package:flutter_all_in_one/modules/interactive_viewer/interactive_viewer_screen.dart';
 import 'package:flutter_all_in_one/modules/listview/listview_screen.dart';
+import 'package:flutter_all_in_one/modules/location/location_screen.dart';
 import 'package:flutter_all_in_one/modules/log/log_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/navigation_drawer_screen.dart';
 import 'package:flutter_all_in_one/modules/notification/notification_screen.dart';
@@ -256,7 +257,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Image Picker",
     "Camera",
     "Work Manager",
-    "Background Task With Notification"
+    "Background Task With Notification",
+    "Location"
   ];
 
   @override
@@ -475,6 +477,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.backgroundTaskWithNotification:
       navigateTo(context, const BackgroundTaskWithNotificationScreen());
       break;
+    case DashboardItemsType.location:
+      navigateTo(context, const LocationScreen());
+      break;
   }
 }
 
@@ -543,7 +548,8 @@ enum DashboardItemsType {
   imagePicker,
   camera,
   workManager,
-  backgroundTaskWithNotification;
+  backgroundTaskWithNotification,
+  location;
 }
 
 DashboardItemsType getListItemType(int index) {
