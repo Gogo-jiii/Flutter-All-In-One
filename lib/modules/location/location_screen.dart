@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
+import 'package:flutter_all_in_one/modules/location/user_location_model.dart';
 import 'package:location/location.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -14,6 +17,11 @@ class _LocationScreenState extends State<LocationScreen> {
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
   LocationData? _locationData;
+
+  final StreamController<UserLocationModel> _locationController =
+      StreamController<UserLocationModel>();
+
+  Stream<UserLocationModel> get locationStream => _locationController.stream;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +53,15 @@ class _LocationScreenState extends State<LocationScreen> {
                 getContinuousLocation();
               },
               child: const Text("Get Continuous Location"),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                getBackgroundLocation();
+              },
+              child: const Text("Get Background Location"),
             ),
           ],
         ),
@@ -101,11 +118,56 @@ class _LocationScreenState extends State<LocationScreen> {
     }
 
     location.onLocationChanged.listen((LocationData currentLocation) async {
-      var _locationDataTemp = await location.getLocation();
+      if (currentLocation != null) {
+        _locationController.add(UserLocationModel(
+          currentLocation.latitude,
+          currentLocation.longitude,
+        ));
 
-      setState(() {
-        _locationData = _locationDataTemp;
-      });
+        debugPrint("Latitude: ${currentLocation.latitude}");
+        debugPrint("Longitude: ${currentLocation.longitude}");
+
+        setState(() {
+          _locationData = currentLocation;
+        });
+      }
+    });
+  }
+
+  void getBackgroundLocation() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    location.enableBackgroundMode(enable: true);
+
+    location.onLocationChanged.listen((LocationData currentLocation) async {
+      if (currentLocation != null) {
+        _locationController.add(UserLocationModel(
+          currentLocation.latitude,
+          currentLocation.longitude,
+        ));
+
+        await location.changeNotificationOptions(
+            channelName: "channel_name",
+            color: Colors.red,
+            iconName: "@mipmap/ic_launcher",
+            title:
+                "Location: ${currentLocation.latitude}\n${currentLocation.longitude}",
+            description: "Description");
+      }
     });
   }
 }
