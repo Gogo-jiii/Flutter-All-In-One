@@ -56,8 +56,9 @@ dependencies:
   webview_flutter: ^3.0.4
   image_picker: ^0.8.6
   workmanager: ^0.5.0
-  flutter_background: ^1.1.0
   location: ^4.4.0
+  audioplayers: ^1.1.1
+  flutter_foreground_task: ^3.10.0
 
 flutter_icons:
   android: true
@@ -87,6 +88,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/sounds/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
