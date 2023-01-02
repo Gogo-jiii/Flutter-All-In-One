@@ -10,9 +10,11 @@ import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 void startCallback() {
   // The setTaskHandler function must be called to handle the task in the background.
   FlutterForegroundTask.setTaskHandler(FirstTaskHandler());
-
   Timer.periodic(const Duration(seconds: 5), (timer) {
     debugPrint("TAG: ${timer.tick}");
+
+    FlutterForegroundTask.updateService(
+        notificationText: timer.tick.toString());
   });
 }
 
@@ -26,13 +28,14 @@ class FirstTaskHandler extends TaskHandler {
     // You can use the getData function to get the stored data.
     final customData =
         await FlutterForegroundTask.getData<String>(key: 'customData');
-    print('customData: $customData');
+    debugPrint('TAG: customData: $customData');
   }
 
   @override
   Future<void> onEvent(DateTime timestamp, SendPort? sendPort) async {
     // Send data to the main isolate.
     sendPort?.send(timestamp);
+    debugPrint('TAG: onEvent');
   }
 
   @override

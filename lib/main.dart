@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/alert_dialog/alert_dialog_screen.dart';
-import 'package:flutter_all_in_one/modules/audio/audio_screen.dart';
 import 'package:flutter_all_in_one/modules/autocomplete_textfield/autocomplete_textfield_screen.dart';
-import 'package:flutter_all_in_one/modules/background_service/background_service_screen.dart';
 import 'package:flutter_all_in_one/modules/bottom_appbar/bottom_appbar_screen.dart';
 import 'package:flutter_all_in_one/modules/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:flutter_all_in_one/modules/bottom_sheet/bottom_sheet_screen.dart';
@@ -165,10 +163,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Image Picker",
     "Camera",
     "Work Manager",
-    "Background Service",
     "Foreground Task",
     "Location",
-    "Audio",
   ];
 
   @override
@@ -384,17 +380,11 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.workManager:
       navigateTo(context, const WorkManagerScreen());
       break;
-    case DashboardItemsType.backgroundService:
-      navigateTo(context, const BackgroundServiceScreen());
-      break;
     case DashboardItemsType.foregroundTask:
       navigateTo(context, const ForegroundTaskScreen());
       break;
     case DashboardItemsType.location:
       navigateTo(context, const LocationScreen());
-      break;
-    case DashboardItemsType.audio:
-      navigateTo(context, const AudioScreen());
       break;
   }
 }
@@ -464,10 +454,8 @@ enum DashboardItemsType {
   imagePicker,
   camera,
   workManager,
-  backgroundService,
   foregroundTask,
   location,
-  audio;
 }
 
 DashboardItemsType getListItemType(int index) {
