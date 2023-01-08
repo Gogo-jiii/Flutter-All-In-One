@@ -10,12 +10,6 @@ import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 void startCallback() {
   // The setTaskHandler function must be called to handle the task in the background.
   FlutterForegroundTask.setTaskHandler(FirstTaskHandler());
-  Timer.periodic(const Duration(seconds: 5), (timer) {
-    debugPrint("TAG: ${timer.tick}");
-
-    FlutterForegroundTask.updateService(
-        notificationText: timer.tick.toString());
-  });
 }
 
 class FirstTaskHandler extends TaskHandler {
@@ -134,5 +128,12 @@ class _ForegroundTaskScreenState extends State<ForegroundTaskScreen> {
         notificationTitle: "Title",
         notificationText: "Text",
         callback: startCallback);
+
+    Timer.periodic(const Duration(seconds: 5), (timer) {
+      debugPrint("TAG: ${timer.tick}");
+
+      FlutterForegroundTask.updateService(
+          notificationText: timer.tick.toString());
+    });
   }
 }
