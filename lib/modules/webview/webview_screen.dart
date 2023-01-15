@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -13,16 +11,13 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen>
     with TickerProviderStateMixin {
-  late WebViewController _webViewController;
+
   late AnimationController controller;
-  var isProgressIndicatorVisible = true;
+  final WebViewController _webViewController = WebViewController();
 
   @override
   void initState() {
     super.initState();
-    // Enable virtual display.
-    if (Platform.isAndroid) WebView.platform = AndroidWebView();
-
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
@@ -46,34 +41,31 @@ class _WebViewScreenState extends State<WebViewScreen>
         appBar: getAppBar(context, "Web View"),
         body: Stack(
           children: [
-            WebView(
-              onPageStarted: (value) {
-                setState(() {
-                  isProgressIndicatorVisible = true;
-                });
-              },
-              onPageFinished: (url) {
-                setState(() {
-                  isProgressIndicatorVisible = false;
-                });
-              },
-              gestureNavigationEnabled: true,
-              backgroundColor: const Color(0x00000000),
-              onWebViewCreated: (WebViewController webViewController) {
-                _webViewController = webViewController;
-                _webViewController.canGoBack();
-                _webViewController.canGoForward();
-              },
-              zoomEnabled: true,
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: 'https://www.google.com',
-            ),
-            Visibility(
-              visible: isProgressIndicatorVisible,
-              child: LinearProgressIndicator(
-                color: Colors.orange,
-                value: controller.value,
-              ),
+            WebViewWidget(
+              controller: _webViewController
+                ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                ..setBackgroundColor(const Color(0x00000000))
+                ..setNavigationDelegate(
+                  NavigationDelegate(
+                    onProgress: (int progress) {
+
+                    },
+                    onPageStarted: (String url) {
+
+                    },
+                    onPageFinished: (String url) {
+                      controller.stop(canceled: true);
+                    },
+                    onWebResourceError: (WebResourceError error) {},
+                    onNavigationRequest: (NavigationRequest request) {
+                      if (request.url.startsWith('https://www.youtube.com/')) {
+                        return NavigationDecision.prevent;
+                      }
+                      return NavigationDecision.navigate;
+                    },
+                  ),
+                )
+                ..loadRequest(Uri.parse('https://www.google.com')),
             ),
           ],
         ),
