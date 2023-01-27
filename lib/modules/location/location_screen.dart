@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
@@ -14,50 +15,15 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  Location location = Location();
+
+  Location? location = Location();
+  LocationData? _locationData;
+  final StreamController<UserLocationModel> _locationController = StreamController<UserLocationModel>();
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
-  LocationData? _locationData;
-
-  final StreamController<UserLocationModel> _locationController =
-      StreamController<UserLocationModel>();
 
   Stream<UserLocationModel> get locationStream => _locationController.stream;
-
-  @override
-  void initState() {
-    super.initState();
-    _initForegroundTask();
-  }
-
-  void _initForegroundTask() {
-    FlutterForegroundTask.init(
-      androidNotificationOptions: AndroidNotificationOptions(
-        channelId: 'notification_channel_id',
-        channelName: 'Foreground Notification',
-        channelDescription:
-            'This notification appears when the foreground service is running.',
-        channelImportance: NotificationChannelImportance.LOW,
-        priority: NotificationPriority.LOW,
-        iconData: const NotificationIconData(
-          resType: ResourceType.mipmap,
-          resPrefix: ResourcePrefix.ic,
-          name: 'launcher',
-        ),
-      ),
-      iosNotificationOptions: const IOSNotificationOptions(
-        showNotification: true,
-        playSound: false,
-      ),
-      foregroundTaskOptions: const ForegroundTaskOptions(
-        interval: 5000,
-        isOnceEvent: false,
-        autoRunOnBoot: true,
-        allowWakeLock: true,
-        allowWifiLock: true,
-      ),
-    );
-  }
+  String locationText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -91,15 +57,6 @@ class _LocationScreenState extends State<LocationScreen> {
                 },
                 child: const Text("Get Continuous Location"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  getLocationInBackground();
-                },
-                child: const Text("Get Background Location"),
-              ),
             ],
           ),
         ),
@@ -108,23 +65,23 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void getLastLocation() async {
-    _serviceEnabled = await location.serviceEnabled();
+    _serviceEnabled = (await location?.serviceEnabled())!;
     if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
+      _serviceEnabled = (await location?.requestService())!;
       if (!_serviceEnabled) {
         return;
       }
     }
 
-    _permissionGranted = await location.hasPermission();
+    _permissionGranted = (await location?.hasPermission())!;
     if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
+      _permissionGranted = (await location?.requestPermission())!;
       if (_permissionGranted != PermissionStatus.granted) {
         return;
       }
     }
 
-    var _locationDataTemp = await location.getLocation();
+    var _locationDataTemp = await location?.getLocation();
 
     setState(() {
       _locationData = _locationDataTemp;
@@ -139,83 +96,35 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void getContinuousLocation() async {
-    _serviceEnabled = await location.serviceEnabled();
+    _serviceEnabled = (await location?.serviceEnabled())!;
     if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
+      _serviceEnabled = (await location?.requestService())!;
       if (!_serviceEnabled) {
         return;
       }
     }
 
-    _permissionGranted = await location.hasPermission();
+    _permissionGranted = (await location?.hasPermission())!;
     if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
+      _permissionGranted = (await location?.requestPermission())!;
       if (_permissionGranted != PermissionStatus.granted) {
         return;
       }
     }
 
-    location.onLocationChanged.listen((LocationData currentLocation) async {
-      if (currentLocation != null) {
-        _locationController.add(UserLocationModel(
-          currentLocation.latitude,
-          currentLocation.longitude,
-        ));
+    location?.onLocationChanged.listen((LocationData currentLocation) async {
+      _locationController.add(UserLocationModel(
+        currentLocation.latitude,
+        currentLocation.longitude,
+      ));
 
-        debugPrint("Latitude: ${currentLocation.latitude}");
-        debugPrint("Longitude: ${currentLocation.longitude}");
+      debugPrint("Latitude: ${currentLocation.latitude}");
+      debugPrint("Longitude: ${currentLocation.longitude}");
 
-        setState(() {
-          _locationData = currentLocation;
-        });
-      }
+      setState(() {
+        _locationData = currentLocation;
+      });
     });
   }
 
-  void getLocationInBackground() async {
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    FlutterForegroundTask.startService(
-      notificationTitle: "Location",
-      notificationText: "Please wait...",
-    );
-
-    location.onLocationChanged.listen((LocationData currentLocation) async {
-      if (currentLocation != null) {
-        _locationController.add(UserLocationModel(
-          currentLocation.latitude,
-          currentLocation.longitude,
-        ));
-
-        debugPrint("Latitude: ${currentLocation.latitude}");
-        debugPrint("Longitude: ${currentLocation.longitude}");
-
-        FlutterForegroundTask.isRunningService.then((value) => {
-              FlutterForegroundTask.updateService(
-                  notificationText:
-                      "Latitude: ${currentLocation.latitude}\nLongitude: ${currentLocation.longitude}")
-            });
-      }
-    });
-
-    Future.delayed(const Duration(seconds: 1), () async {
-      if (_locationData == null) {
-        await location.getLocation();
-      }
-    });
-  }
 }

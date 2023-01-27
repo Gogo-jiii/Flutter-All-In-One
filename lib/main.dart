@@ -54,6 +54,7 @@ import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 import 'package:flutter_all_in_one/modules/webview/webview_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'modules/avatar/avatar_screen.dart';
 import 'modules/common_widgets/common_widgets.dart';
 import 'modules/datepicker/date_picker_screen.dart';
 import 'modules/divider/divider_screen.dart';
@@ -62,6 +63,7 @@ import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/file_picker/file_picker_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
 import 'modules/provider/provider_model.dart';
+import 'modules/stepper/vertical_stepper_screen.dart';
 import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 import 'modules/workmanager/workmanager_screen.dart';
@@ -165,6 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Work Manager",
     "Foreground Task",
     "Location",
+    "Avatar",
+    "Vertical Stepper"
   ];
 
   @override
@@ -386,6 +390,12 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.location:
       navigateTo(context, const LocationScreen());
       break;
+    case DashboardItemsType.avatar:
+      navigateTo(context, const AvatarScreen());
+      break;
+    case DashboardItemsType.verticalStepper:
+      navigateTo(context, const VerticalStepperScreen());
+      break;
   }
 }
 
@@ -456,6 +466,8 @@ enum DashboardItemsType {
   workManager,
   foregroundTask,
   location,
+  avatar,
+  verticalStepper,
 }
 
 DashboardItemsType getListItemType(int index) {

@@ -1,15 +1,30 @@
 import 'dart:async';
 import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
+import 'package:flutter_all_in_one/modules/foreground_task/MyModel.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+
+int t = 0;
+MyModel _model = MyModel();
+int result = 0;
 
 // The callback function should always be a top-level function.
 @pragma('vm:entry-point')
 void startCallback() {
   // The setTaskHandler function must be called to handle the task in the background.
   FlutterForegroundTask.setTaskHandler(FirstTaskHandler());
+
+  doSome();
+}
+
+void doSome() {
+  Timer.periodic(const Duration(seconds: 5), (timer) {
+    t = timer.tick;
+    _model.num = _model.num + 1;
+    result = _model.num;
+    debugPrint("Tick: $t : $result");
+  });
 }
 
 class FirstTaskHandler extends TaskHandler {
@@ -30,6 +45,9 @@ class FirstTaskHandler extends TaskHandler {
     // Send data to the main isolate.
     sendPort?.send(timestamp);
     debugPrint('TAG: onEvent');
+
+    FlutterForegroundTask.updateService(
+        notificationText: t.toString() + "_" + result.toString());
   }
 
   @override
@@ -67,6 +85,7 @@ class ForegroundTaskScreen extends StatefulWidget {
 }
 
 class _ForegroundTaskScreenState extends State<ForegroundTaskScreen> {
+
   @override
   void initState() {
     super.initState();
@@ -128,12 +147,5 @@ class _ForegroundTaskScreenState extends State<ForegroundTaskScreen> {
         notificationTitle: "Title",
         notificationText: "Text",
         callback: startCallback);
-
-    Timer.periodic(const Duration(seconds: 5), (timer) {
-      debugPrint("TAG: ${timer.tick}");
-
-      FlutterForegroundTask.updateService(
-          notificationText: timer.tick.toString());
-    });
   }
 }
