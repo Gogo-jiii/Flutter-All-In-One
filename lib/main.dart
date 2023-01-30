@@ -20,6 +20,7 @@ import 'package:flutter_all_in_one/modules/future_builder/future_builder_screen.
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
+import 'package:flutter_all_in_one/modules/stepper/horizontal_stepper_screen.dart';
 import 'package:flutter_all_in_one/modules/http/http_screen.dart';
 import 'package:flutter_all_in_one/modules/image/image_screen.dart';
 import 'package:flutter_all_in_one/modules/image_picker/image_picker_screen.dart';
@@ -62,6 +63,7 @@ import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/file_picker/file_picker_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
+import 'modules/hive database/hive_database_screen.dart';
 import 'modules/provider/provider_model.dart';
 import 'modules/stepper/vertical_stepper_screen.dart';
 import 'modules/storage/storage_screen.dart';
@@ -168,7 +170,9 @@ class _MyHomePageState extends State<MyHomePage> {
     "Foreground Task",
     "Location",
     "Avatar",
-    "Vertical Stepper"
+    "Vertical Stepper",
+    "Horizontal Stepper",
+    "Hive Database",
   ];
 
   @override
@@ -396,6 +400,12 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.verticalStepper:
       navigateTo(context, const VerticalStepperScreen());
       break;
+    case DashboardItemsType.horizontalStepper:
+      navigateTo(context, const HorizontalStepperScreen());
+      break;
+    case DashboardItemsType.hiveDatabase:
+      navigateTo(context, const HiveDatabaseScreen());
+      break;
   }
 }
 
@@ -468,6 +478,8 @@ enum DashboardItemsType {
   location,
   avatar,
   verticalStepper,
+  horizontalStepper,
+  hiveDatabase,
 }
 
 DashboardItemsType getListItemType(int index) {
