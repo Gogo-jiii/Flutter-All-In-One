@@ -18,6 +18,7 @@ import 'package:flutter_all_in_one/modules/foreground_task/foreground_task_scree
 import 'package:flutter_all_in_one/modules/form/form_screen.dart';
 import 'package:flutter_all_in_one/modules/future_builder/future_builder_screen.dart';
 import 'package:flutter_all_in_one/modules/get_text_from_textfield/get_text_from_textfield_screen.dart';
+import 'package:flutter_all_in_one/modules/google_map/google_map_screen.dart';
 import 'package:flutter_all_in_one/modules/hello_world/helloworld_screen.dart';
 import 'package:flutter_all_in_one/modules/hero/hero_first_screen.dart';
 import 'package:flutter_all_in_one/modules/stepper/horizontal_stepper_screen.dart';
@@ -173,6 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Vertical Stepper",
     "Horizontal Stepper",
     "Hive Database",
+    "Google Map",
   ];
 
   @override
@@ -406,6 +408,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.hiveDatabase:
       navigateTo(context, const HiveDatabaseScreen());
       break;
+    case DashboardItemsType.googleMap:
+      navigateTo(context, const GoogleMapScreen());
+      break;
   }
 }
 
@@ -480,6 +485,7 @@ enum DashboardItemsType {
   verticalStepper,
   horizontalStepper,
   hiveDatabase,
+  googleMap,
 }
 
 DashboardItemsType getListItemType(int index) {
