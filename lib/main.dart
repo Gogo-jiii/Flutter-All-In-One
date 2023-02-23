@@ -64,15 +64,19 @@ import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/file_picker/file_picker_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
+import 'modules/google_signin/google_signin_screen.dart';
 import 'modules/hive database/hive_database_screen.dart';
 import 'modules/provider/provider_model.dart';
 import 'modules/stepper/vertical_stepper_screen.dart';
 import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
 import 'modules/workmanager/workmanager_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
   runApp(const MyApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
 }
 
 class MyApp extends StatelessWidget {
@@ -175,6 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "Horizontal Stepper",
     "Hive Database",
     "Google Map",
+    "Google SignIn"
   ];
 
   @override
@@ -411,6 +416,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.googleMap:
       navigateTo(context, const GoogleMapScreen());
       break;
+    case DashboardItemsType.googleSignIn:
+      navigateTo(context, const GoogleSignInScreen());
+      break;
   }
 }
 
@@ -486,6 +494,7 @@ enum DashboardItemsType {
   horizontalStepper,
   hiveDatabase,
   googleMap,
+  googleSignIn,
 }
 
 DashboardItemsType getListItemType(int index) {
