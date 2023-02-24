@@ -18,32 +18,7 @@ class _DropDownFormFieldScreenState extends State<DropDownFormFieldScreen> {
       body: Container(
         margin: const EdgeInsets.all(16),
         child: Center(
-          child: DropdownButtonFormField<String>(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-            ),
-            hint: const Text("Select an Item"),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            elevation: 16,
-            icon: const Icon(
-              Icons.arrow_circle_down,
-              color: Colors.green,
-            ),
-            dropdownColor: Colors.green,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-            items: <String>['One', 'Two', 'Three', 'Four']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(
-                  value,
-                ),
-              );
-            }).toList(),
+          child: getDropDownFormField(
             onChanged: (String? value) {
               showToast(value!);
             },

@@ -24,88 +24,55 @@ class _FormScreenState extends State<FormScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Form"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextFormField(
-                key: _nameKey,
-                onChanged: (value) {
-                  doValidation(_nameKey, null);
-                },
-                decoration: const InputDecoration(labelText: "Enter Name"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                key: _ageKey,
-                onChanged: (value) {
-                  doValidation(_ageKey, null);
-                },
-                keyboardType: TextInputType.number,
-                maxLength: 3,
-                decoration: const InputDecoration(labelText: "Enter Age"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the age';
-                  }
-                  if (int.parse(value) < 18) {
-                    return 'You need to be above 18 years of age';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                key: _phoneNumberKey,
-                onChanged: (value) {
-                  doValidation(_phoneNumberKey, null);
-                },
-                keyboardType: TextInputType.phone,
-                maxLength: 10,
-                decoration:
-                    const InputDecoration(labelText: "Enter Phone Number"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the phone number';
-                  }
-                  if (value.length != 10) {
-                    return 'Please enter a 10 digit mobile number';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                key: _emailKey,
-                onChanged: (value) {
-                  doValidation(_emailKey, null);
-                },
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(labelText: "Enter Email ID"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an email address';
-                  }
-                  if (!RegExp(_emailRegex).hasMatch(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  doValidation(null, _formKey);
-                },
-                child: const Text("Submit"),
-              ),
+              getFormField(_nameKey, "Enter Name", (value) {
+                doValidation(_nameKey, null);
+              }, (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              }, null, null),
+              getFormField(_ageKey, "Enter Age", (value) {
+                doValidation(_ageKey, null);
+              }, (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter the age';
+                }
+                if (int.parse(value) < 18) {
+                  return 'You need to be above 18 years of age';
+                }
+                return null;
+              }, TextInputType.number, 3),
+              getFormField(_phoneNumberKey, "Enter Phone Number", (value) {
+                doValidation(_phoneNumberKey, null);
+              }, (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter the phone number';
+                }
+                if (value.length != 10) {
+                  return 'Please enter a 10 digit mobile number';
+                }
+                return null;
+              }, TextInputType.phone, 10),
+              getFormField(_emailKey, "Enter Email ID", (value) {
+                doValidation(_emailKey, null);
+              }, (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter an email address';
+                }
+                if (!RegExp(_emailRegex).hasMatch(value)) {
+                  return 'Please enter a valid email address';
+                }
+                return null;
+              }, TextInputType.emailAddress, null),
+              getSizedBox(16.0),
+              getElevatedButton("Submit", onPressed: (){ doValidation(null, _formKey);}),
             ],
           ),
         ),

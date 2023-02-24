@@ -93,7 +93,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Styles.getTextColor(),
+        backgroundColor: Styles.getAlertDialogBackgroundColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(
@@ -120,7 +120,12 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                       },
                       value: RadioButtonData.A,
                     ),
-                    const Text("A"),
+                    Text(
+                      "A",
+                      style: TextStyle(
+                        color: Styles.getAlertDialogTextColor(),
+                      ),
+                    ),
                   ],
                 ),
                 Row(
@@ -136,7 +141,12 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                       },
                       value: RadioButtonData.B,
                     ),
-                    const Text("B"),
+                    Text(
+                      "B",
+                      style: TextStyle(
+                        color: Styles.getAlertDialogTextColor(),
+                      ),
+                    ),
                   ],
                 )
               ],
@@ -182,7 +192,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Styles.getTextColor(),
+        backgroundColor: Styles.getAlertDialogBackgroundColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(
@@ -217,7 +227,12 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                         });
                       },
                     ),
-                    const Text("A"),
+                    Text(
+                      "A",
+                      style: TextStyle(
+                        color: Styles.getAlertDialogTextColor(),
+                      ),
+                    ),
                   ],
                 ),
                 Row(
@@ -240,7 +255,12 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                         });
                       },
                     ),
-                    const Text("B"),
+                    Text(
+                      "B",
+                      style: TextStyle(
+                        color: Styles.getAlertDialogTextColor(),
+                      ),
+                    ),
                   ],
                 ),
                 Row(

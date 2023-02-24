@@ -11,41 +11,20 @@ class DropDownButtonScreen extends StatefulWidget {
 
 class _DropDownButtonScreenState extends State<DropDownButtonScreen> {
   String dropdownValue = 'One';
+  List<String> items = ['One', 'Two', 'Three', 'Four'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(context, "Dropdown Button"),
       body: Center(
-        child: DropdownButton(
-          dropdownColor: Colors.green,
-          borderRadius: BorderRadius.circular(16),
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          underline: Container(
-            height: 2,
-            color: Colors.green,
-          ),
-          value: dropdownValue,
-          icon: const Icon(Icons.arrow_circle_down),
-          elevation: 8,
-          items: <String>['One', 'Two', 'Three', 'Four']
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(
-                value,
-              ),
-            );
-          }).toList(),
+        child: getDropDownButton(items, dropdownValue,
           onChanged: (String? value) {
             setState(() {
-              dropdownValue = value!;
-              showToast("Selected $dropdownValue");
-            });
+                dropdownValue = value!;
+                showToast("Selected $dropdownValue");
+              },
+            );
           },
         ),
       ),

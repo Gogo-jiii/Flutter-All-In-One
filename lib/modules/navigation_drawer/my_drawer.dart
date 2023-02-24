@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/second_screen.dart';
 import 'package:flutter_all_in_one/modules/navigation_drawer/third_screen.dart';
-
-import '../toast/toast_screen.dart';
+import '../common_widgets/common_widgets.dart';
 import 'first_screen.dart';
 
 class MyDrawer extends StatelessWidget {

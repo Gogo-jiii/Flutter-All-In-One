@@ -11,6 +11,14 @@ class Styles {
     return _isDarkTheme ? _whiteColor : _primaryBlackColor;
   }
 
+  static Color getAlertDialogBackgroundColor(){
+    return _isDarkTheme ? _primaryBlackColor : _whiteColor;
+  }
+
+  static Color getAlertDialogTextColor(){
+    return _isDarkTheme ? _whiteColor : _primaryBlackColor;
+  }
+
   static Color getCardColor(){
     return _isDarkTheme ? _primaryBlackColor : _whiteColor;
   }
