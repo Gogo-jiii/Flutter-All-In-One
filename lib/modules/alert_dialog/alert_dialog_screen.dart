@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
+import 'package:flutter_all_in_one/modules/theme/styles.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 class AlertDialogScreen extends StatefulWidget {
@@ -15,51 +16,25 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Alert dialog"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16.0),
         child: Center(
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  showSimpleAlertdialog();
-                },
-                child: const Text(
-                  "Simple Alert Dialog",
-                ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showOptionAlertDialog();
-                },
-                child: const Text(
-                  "Option Alert Dialog",
-                ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showSingleChoiceAlertDialog();
-                },
-                child: const Text(
-                  "Single Choice Alert Dialog",
-                ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showMultipleChoiceAlertDialog();
-                },
-                child: const Text(
-                  "Multiple Choice Alert Dialog",
-                ),
-              ),
+              getElevatedButton("Simple Alert Dialog", onPressed: () {
+                showSimpleAlertdialog();
+              }),
+              getSizedBox(32.0),
+              getElevatedButton("Option Alert Dialog", onPressed: () {
+                showOptionAlertDialog();
+              }),
+              getSizedBox(32.0),
+              getElevatedButton("Single Choice Alert Dialog", onPressed: () {
+                showSingleChoiceAlertDialog();
+              }),
+              getSizedBox(32.0),
+              getElevatedButton("Multiple Choice Alert Dialog", onPressed: () {
+                showMultipleChoiceAlertDialog();
+              }),
             ],
           ),
         ),
@@ -73,41 +48,17 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       barrierLabel: "Hello",
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Colors.white,
-        elevation: 8,
-        scrollable: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(16),
-          ),
-        ),
-        title: const Text("Title"),
-        content: const Text("Content"),
-        actions: [
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            onPressed: () {
-              showToast("Cancel");
-              Navigator.pop(context, "Cancel");
-            },
-            child: const Text("Cancel"),
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            onPressed: () {
-              showToast("Ok");
-              Navigator.pop(context, "Ok");
-            },
-            child: const Text("Ok"),
-          ),
-        ],
+      builder: (BuildContext context) => getSimpleAlertDialog(
+        "Title",
+        "Content",
+        onOkPressed: () {
+          showToast("OK");
+          Navigator.pop(context, "OK");
+        },
+        onCancelPressed: () {
+          showToast("Cancel");
+          Navigator.pop(context, "Cancel");
+        },
       ),
     );
   }
@@ -116,23 +67,11 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
     switch (await showDialog<Data>(
         context: context,
         builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text('Select option'),
-            children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, Data.firstOption);
-                },
-                child: const Text('First Option'),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, Data.secondOption);
-                },
-                child: const Text('Second Option'),
-              ),
-            ],
-          );
+          return getOptionAlertDialog(onFirstOptionPressed: () {
+            Navigator.pop(context, Data.firstOption);
+          }, onSecondOptionPressed: () {
+            Navigator.pop(context, Data.secondOption);
+          });
         })) {
       case Data.firstOption:
         showToast("First Option");
@@ -154,7 +93,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: Styles.getTextColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(
@@ -243,7 +182,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: Styles.getTextColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(

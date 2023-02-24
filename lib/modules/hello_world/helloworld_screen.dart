@@ -18,7 +18,9 @@ class _HelloWorldScreenState extends State<HelloWorldScreen> {
         child: Text(
           "Hello World!",
           style: TextStyle(
-              color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold),
+              color: Colors.black,
+              fontSize: 32,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

@@ -25,27 +25,10 @@ class _AutoCompleteTextfieldScreenState
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(16),
-          child: Autocomplete<String>(
-            onSelected: (String selection) {
+          child: getAutoCompleteTextField(
+            _kOptions,
+            (String selection) {
               showToast("Selected : $selection");
-            },
-            fieldViewBuilder:
-                (context, textEditingController, focusNode, onFieldSubmitted) =>
-                    TextFormField(
-              controller: textEditingController,
-              focusNode: focusNode,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Enter text...",
-              ),
-            ),
-            optionsBuilder: (TextEditingValue textEditingValue) {
-              if (textEditingValue.text.isEmpty) {
-                return const Iterable<String>.empty();
-              }
-              return _kOptions.where((String option) {
-                return option.contains(textEditingValue.text.toLowerCase());
-              });
             },
           ),
         ),

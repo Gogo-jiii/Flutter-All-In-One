@@ -70,32 +70,59 @@ import 'modules/provider/provider_model.dart';
 import 'modules/stepper/vertical_stepper_screen.dart';
 import 'modules/storage/storage_screen.dart';
 import 'modules/system_bars/system_bars_screen.dart';
+import 'modules/theme/dark_theme_provider.dart';
+import 'modules/theme/styles.dart';
 import 'modules/workmanager/workmanager_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
-  runApp(const MyApp());
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+void main() async {
+  runApp(MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
-class MyApp extends StatelessWidget {
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-  const MyApp({Key? key}) : super(key: key);
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentAppTheme();
+  }
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ProviderModel())],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(title: 'Flutter All in One'),
+      providers: [
+        ChangeNotifierProvider(create: (_) {
+          return ProviderModel();
+        }),
+        ChangeNotifierProvider(create: (_) {
+          return themeChangeProvider;
+        }),
+      ],
+      child: Consumer<DarkThemeProvider>(
+        builder: (BuildContext context, value, Widget? child) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+            home: const MyHomePage(title: 'Flutter All in One'),
+          );
+        },
       ),
     );
   }
@@ -184,27 +211,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          PopupMenuButton(itemBuilder: (context) {
+            return [
+              PopupMenuItem<int>(
+                child: StatefulBuilder(
+                  builder: (BuildContext context, void Function(void Function()) setState) {
+                    return CheckboxListTile(
+                        title: const Text("Dark Theme"),
+                        value: themeChange.darkTheme,
+                        onChanged: (value) {
+                          setState(() {
+                            themeChange.darkTheme = value!;
+                            Navigator.of(context).pop();
+                          });
+                        });
+                  },
+                ),
+              ),
+            ];
+          })
+        ],
       ),
-      body: Scrollbar(
-        thumbVisibility: true,
-        thickness: 10,
-        trackVisibility: true,
-        interactive: true,
-        radius: const Radius.circular(10),
-        child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  child: getListItem(context, data, index),
-                  onTap: () {
-                    navigate(context, index);
-                  });
-            }),
-      ),
+      body: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+                child: getListItem(context, data, index),
+                onTap: () {
+                  navigate(context, index);
+                });
+          }),
     );
   }
 }
