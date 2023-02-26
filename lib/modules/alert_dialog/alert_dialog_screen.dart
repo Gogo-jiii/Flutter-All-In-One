@@ -93,7 +93,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Styles.getAlertDialogBackgroundColor(),
+        backgroundColor: Styles().getAlertDialogBackgroundColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(
@@ -123,7 +123,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                     Text(
                       "A",
                       style: TextStyle(
-                        color: Styles.getAlertDialogTextColor(),
+                        color: Styles().getAlertDialogTextColor(),
                       ),
                     ),
                   ],
@@ -144,7 +144,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                     Text(
                       "B",
                       style: TextStyle(
-                        color: Styles.getAlertDialogTextColor(),
+                        color: Styles().getAlertDialogTextColor(),
                       ),
                     ),
                   ],
@@ -192,7 +192,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
       //barrierColor: Colors.white,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Styles.getAlertDialogBackgroundColor(),
+        backgroundColor: Styles().getAlertDialogBackgroundColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(
@@ -230,7 +230,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                     Text(
                       "A",
                       style: TextStyle(
-                        color: Styles.getAlertDialogTextColor(),
+                        color: Styles().getAlertDialogTextColor(),
                       ),
                     ),
                   ],
@@ -258,7 +258,7 @@ class _AlertDialogScreenState extends State<AlertDialogScreen> {
                     Text(
                       "B",
                       style: TextStyle(
-                        color: Styles.getAlertDialogTextColor(),
+                        color: Styles().getAlertDialogTextColor(),
                       ),
                     ),
                   ],

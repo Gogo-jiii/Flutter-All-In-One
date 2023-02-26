@@ -15,7 +15,7 @@ class _HeroFirstScreenState extends State<HeroFirstScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Hero First Screen"),
       body: Container(
-        margin: const EdgeInsets.all(8),
+        margin: setMargin(16),
         child: Center(
           child: Column(
             children: [
@@ -27,16 +27,13 @@ class _HeroFirstScreenState extends State<HeroFirstScreen> {
                   width: 100,
                 ),
               ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const HeroSecondScreen()));
-                },
-                child: const Text("Go to second page."),
-              ),
+              getSizedBox(16),
+              getElevatedButton("Go to second page.", onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const HeroSecondScreen()));
+              }),
             ],
           ),
         ),

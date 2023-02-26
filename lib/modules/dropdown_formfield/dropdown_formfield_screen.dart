@@ -16,7 +16,7 @@ class _DropDownFormFieldScreenState extends State<DropDownFormFieldScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Dropdown Form Field"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Center(
           child: getDropDownFormField(
             onChanged: (String? value) {

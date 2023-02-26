@@ -16,29 +16,19 @@ class _SpacerScreenState extends State<SpacerScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Spacer"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           children: [
             Row(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    showToast("Button 1 clicked");
-                  },
-                  child: const Text("Button 1"),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    showToast("Button 2 clicked");
-                  },
-                  child: const Text("Button 2"),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
+                getElevatedButton("Button 1", onPressed: () {
+                  showToast("Button 1 clicked");
+                }),
+                getSpacer(1),
+                getElevatedButton("Button 2", onPressed: () {
+                  showToast("Button 2 clicked");
+                }),
+                getSpacer(1),
               ],
             ),
           ],

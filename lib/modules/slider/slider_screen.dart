@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 
+import '../theme/styles.dart';
+
 class SliderScreen extends StatefulWidget {
   const SliderScreen({Key? key}) : super(key: key);
 
@@ -21,9 +23,9 @@ class _SliderScreenState extends State<SliderScreen> {
           max: 100,
           divisions: 100,
           label: initialValue.round().toString(),
-          activeColor: Colors.green,
-          inactiveColor: Colors.grey,
-          thumbColor: Colors.orange,
+          activeColor: Styles().getSliderActiveColor(),
+          inactiveColor: Styles().getSliderInActiveColor(),
+          thumbColor: Styles().getSliderThumbColor(),
           value: initialValue,
           onChanged: (double value) {
             setState(() {

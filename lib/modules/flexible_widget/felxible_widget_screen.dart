@@ -15,28 +15,28 @@ class _FlexibleWidgetScreenState extends State<FlexibleWidgetScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Flexible Widget"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Row(
           children: [
             Flexible(
               flex: 1,
               fit: FlexFit.tight,
-              child: ElevatedButton(
-                onPressed: () {
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: getElevatedButton("Button 1", onPressed: () {
                   showToast("Button 1 clicked.");
-                },
-                child: const Text("Button 1"),
+                }),
               ),
             ),
-            const SizedBox(width: 16),
+            getSizedBox(16),
             Flexible(
               flex: 1,
               fit: FlexFit.tight,
-              child: ElevatedButton(
-                onPressed: () {
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: getElevatedButton("Button 2", onPressed: () {
                   showToast("Button 2 clicked.");
-                },
-                child: const Text("Button 2"),
+                }),
               ),
             ),
           ],

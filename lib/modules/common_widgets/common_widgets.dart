@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 Widget getListItem(BuildContext context, List<String> data, int index) {
   return Card(
-    color: Styles.getCardColor(),
+    color: Styles().getCardColor(),
     borderOnForeground: true,
     child: SizedBox(
       width: double.infinity,
@@ -40,7 +40,7 @@ PreferredSizeWidget getAppBar(BuildContext context, String title) {
 ElevatedButton getElevatedButton(title, {required Null Function() onPressed}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Styles.getButtonColor(),
+      backgroundColor: Styles().getButtonColor(),
     ),
     onPressed: onPressed,
     child: Text(title),
@@ -61,7 +61,7 @@ Widget getSimpleAlertDialog(String title, String content,
     {required Null Function() onOkPressed,
     required Null Function() onCancelPressed}) {
   return AlertDialog(
-    backgroundColor: Styles.getAlertDialogBackgroundColor(),
+    backgroundColor: Styles().getAlertDialogBackgroundColor(),
     elevation: 8,
     scrollable: true,
     shape: const RoundedRectangleBorder(
@@ -72,13 +72,13 @@ Widget getSimpleAlertDialog(String title, String content,
     title: Text(
       title,
       style: TextStyle(
-        color: Styles.getAlertDialogTextColor(),
+        color: Styles().getAlertDialogTextColor(),
       ),
     ),
     content: Text(
       content,
       style: TextStyle(
-        color: Styles.getAlertDialogTextColor(),
+        color: Styles().getAlertDialogTextColor(),
       ),
     ),
     actions: [
@@ -127,7 +127,7 @@ Widget getAutoCompleteTextField(_kOptions, onSelected) {
       controller: textEditingController,
       focusNode: focusNode,
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: Styles.getTextColor()),
+        labelStyle: TextStyle(color: Styles().getTextColor()),
         border: const OutlineInputBorder(),
         labelText: "Enter text...",
       ),
@@ -145,19 +145,21 @@ Widget getAutoCompleteTextField(_kOptions, onSelected) {
 
 Widget getDropDownFormField({required Null Function(String? value) onChanged}) {
   return DropdownButtonFormField<String>(
-    decoration: const InputDecoration(
-      border: OutlineInputBorder(),
+    decoration: InputDecoration(
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: Styles().getBorderColor()),
+      ),
     ),
     hint: const Text("Select an Item"),
     borderRadius: const BorderRadius.all(Radius.circular(8)),
     elevation: 16,
-    icon: const Icon(
+    icon: Icon(
       Icons.arrow_circle_down,
-      color: Colors.green,
+      color: Styles().getDropDownButtonIconColor(),
     ),
-    dropdownColor: Colors.green,
+    dropdownColor: Styles().getDropDownButtonBackgroundColor(),
     style: const TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontSize: 32,
       fontWeight: FontWeight.bold,
     ),
@@ -177,16 +179,16 @@ Widget getDropDownFormField({required Null Function(String? value) onChanged}) {
 Widget getDropDownButton(List<String> items, String dropdownValue,
     {required Null Function(String? value) onChanged}) {
   return DropdownButton(
-    dropdownColor: Colors.green,
+    dropdownColor: Styles().getDropDownButtonBackgroundColor(),
     borderRadius: BorderRadius.circular(16),
-    style: const TextStyle(
-      color: Colors.black,
+    style: TextStyle(
+      color: Styles().getTextColor(),
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),
     underline: Container(
       height: 2,
-      color: Colors.green,
+      color: Colors.white,
     ),
     value: dropdownValue,
     icon: const Icon(Icons.arrow_circle_down),
@@ -223,13 +225,20 @@ Widget getFormField(
 Widget getTextField(
     {required String label,
     required TextEditingController controller,
-    required bool validate}) {
+    required bool? validate,
+    required Null Function(String value) onChanged}) {
   return TextFormField(
+    onChanged: onChanged,
     controller: controller,
     decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: label,
-        errorText: validate ? null : "Field can not be empty"),
+      border: const OutlineInputBorder(),
+      labelText: label,
+      errorText: (validate != null && validate)
+          ? null
+          : (validate == null)
+              ? null
+              : "Field can not be empty",
+    ),
   );
 }
 

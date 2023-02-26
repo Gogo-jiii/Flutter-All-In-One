@@ -18,14 +18,11 @@ class _LogScreenState extends State<LogScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Log"),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            debugPrint("TAG : $a");
-            debugPrint("TAG : $b");
-            showToast("See the logcat for logs.");
-          },
-          child: const Text("Click to see log"),
-        ),
+        child: getElevatedButton("Click to see log", onPressed: (){
+          debugPrint("TAG : $a");
+          debugPrint("TAG : $b");
+          showToast("See the logcat for logs.");
+        })
       ),
     );
   }

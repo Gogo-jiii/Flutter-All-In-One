@@ -31,25 +31,20 @@ class _TextWatcherScreenState extends State<TextWatcherScreen> {
       appBar: getAppBar(context, "Text Watcher"),
       body: Center(
         child: Container(
-          margin: const EdgeInsets.all(32),
+          margin: setMargin(32),
           child: Column(
             children: [
-              TextField(
-                onChanged: (String value) {
-                  setState(() {
-                    str.clear();
-                    str.write(value);
-                  });
-                },
-                controller: _controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Enter name",
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              getTextField(
+                  label: "Enter name",
+                  controller: _controller,
+                  validate: null,
+                  onChanged: (String value) {
+                    setState(() {
+                      str.clear();
+                      str.write(value);
+                    });
+                  }),
+              getSizedBox(16),
               Text("Result: ${str.toString()}"),
             ],
           ),

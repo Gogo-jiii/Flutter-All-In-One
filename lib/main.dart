@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
         builder: (BuildContext context, value, Widget? child) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+            theme: Styles().themeData(themeChangeProvider.darkTheme, context),
             home: const MyHomePage(title: 'Flutter All in One'),
           );
         },

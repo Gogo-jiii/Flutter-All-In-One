@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../common_widgets/common_widgets.dart';
+import '../theme/styles.dart';
 
 class SnackBarScreen extends StatefulWidget {
   const SnackBarScreen({Key? key}) : super(key: key);
@@ -19,9 +20,9 @@ class _SnackBarScreenState extends State<SnackBarScreen> {
           onPressed: () {
             showSnackBar(context, "This is a Snack Bar");
           },
-          child: const Text(
+          child:  Text(
             "Show Snack Bar",
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Styles().getTextColor()),
           ),
         ),
       ),

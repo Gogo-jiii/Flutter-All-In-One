@@ -23,9 +23,17 @@ class _GetTextFromTextFieldScreenState
         margin: const EdgeInsets.only(left: 8, right: 8, top: 32),
         child: Column(
           children: [
-            getTextField(label: "Enter Name", controller: _text, validate: _validate),
+            getTextField(
+              label: "Enter Name",
+              controller: _text,
+              validate: _validate,
+              onChanged: (value) {},
+            ),
+            TextField(
+              onChanged: (value) {},
+            ),
             getSizedBox(16.0),
-            getElevatedButton("Submit", onPressed: (){
+            getElevatedButton("Submit", onPressed: () {
               setState(() {
                 if (_text.text.isEmpty) {
                   _validate = false;
