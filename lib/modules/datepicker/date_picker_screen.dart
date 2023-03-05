@@ -17,13 +17,13 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Date Picker"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Center(
-          child: ElevatedButton(
+          child: getElevatedButton(
+            "Date Picker",
             onPressed: () {
               _showDatePicker();
             },
-            child: const Text("Date Picker"),
           ),
         ),
       ),

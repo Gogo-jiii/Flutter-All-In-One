@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 
+import '../theme/styles.dart';
+
 class ProgressIndicatorScreen extends StatefulWidget {
   const ProgressIndicatorScreen({Key? key}) : super(key: key);
 
@@ -41,16 +43,14 @@ class _ProgressIndicatorScreenState extends State<ProgressIndicatorScreen>
           child: Column(
             children: [
               LinearProgressIndicator(
-                backgroundColor: Colors.green,
-                color: Colors.red,
+                backgroundColor: Styles().getLinearProgressIndicatorBackgroundColor(Colors.green),
+                color: Styles().getProgressIndicatorBackgroundColor(Colors.red),
                 value: controller.value,
                 semanticsLabel: 'Linear progress indicator',
               ),
-              const SizedBox(
-                height: 32,
-              ),
+              getSizedBox(16),
               CircularProgressIndicator(
-                color: Colors.orange,
+                color: Styles().getProgressIndicatorBackgroundColor(Colors.orange),
                 value: controller.value,
                 semanticsLabel: 'Circular progress indicator',
               ),

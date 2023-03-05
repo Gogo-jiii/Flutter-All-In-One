@@ -17,6 +17,14 @@ class Styles {
   Color _whiteColor = Colors.white;
   bool _isDarkTheme = false;
 
+  Color getProgressIndicatorBackgroundColor(Color color) {
+    return _isDarkTheme ? _whiteColor : color;
+  }
+
+  Color getLinearProgressIndicatorBackgroundColor(Color color) {
+    return _isDarkTheme ? _primaryBlackColor : color;
+  }
+
   Color getDropDownButtonBackgroundColor() {
     return _isDarkTheme ? _primaryBlackColor : Colors.green;
   }

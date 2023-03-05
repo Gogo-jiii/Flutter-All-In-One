@@ -18,14 +18,11 @@ class _TimePickerScreenState extends State<TimePickerScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Time Picker"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showTimePikcer();
-            },
-            child: const Text("Time Picker"),
-          ),
+          child: getElevatedButton("Time Picker", onPressed: () {
+            showTimePikcer();
+          },),
         ),
       ),
     );
