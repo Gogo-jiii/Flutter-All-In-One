@@ -17,6 +17,14 @@ class Styles {
   Color _whiteColor = Colors.white;
   bool _isDarkTheme = false;
 
+  Color getIconColor() {
+    return _isDarkTheme ? _whiteColor : _primaryBlackColor;
+  }
+
+  Color getLabelColor() {
+    return _isDarkTheme ? _whiteColor : _primaryBlackColor;
+  }
+
   Color getProgressIndicatorBackgroundColor(Color color) {
     return _isDarkTheme ? _whiteColor : color;
   }

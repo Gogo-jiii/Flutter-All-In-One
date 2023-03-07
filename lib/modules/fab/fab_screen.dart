@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
+import '../theme/styles.dart';
+
 class FabScreen extends StatefulWidget {
   const FabScreen({Key? key}) : super(key: key);
 
@@ -73,26 +75,37 @@ class _FabScreenState extends State<FabScreen> {
   Widget getFAB() {
     if (selectedValue == radioButtonList[0]) {
       return FloatingActionButton(
-          splashColor: Colors.red,
-          elevation: 8,
-          backgroundColor: Colors.blue,
-          onPressed: () {
-            showToast("Button clicked.");
-          },
-          child: const Icon(Icons.add));
+        splashColor: Colors.red,
+        elevation: 8,
+        backgroundColor: Colors.blue,
+        onPressed: () {
+          showToast("Button clicked.");
+        },
+        child: Icon(
+          Icons.add,
+          color: Styles().getIconColor(),
+        ),
+      );
     } else if (selectedValue == radioButtonList[1]) {
       return FloatingActionButton.small(
-          splashColor: Colors.green,
-          elevation: 8,
-          backgroundColor: Colors.red,
-          onPressed: () {
-            showToast("Button clicked.");
-          },
-          child: const Icon(Icons.add));
+        splashColor: Colors.green,
+        elevation: 8,
+        backgroundColor: Colors.red,
+        onPressed: () {
+          showToast("Button clicked.");
+        },
+        child: Icon(
+          Icons.add,
+          color: Styles().getIconColor(),
+        ),
+      );
     } else if (selectedValue == radioButtonList[2]) {
       return FloatingActionButton.extended(
         isExtended: _is_extended,
-        icon: const Icon(Icons.add),
+        icon: Icon(
+          Icons.add,
+          color: Styles().getIconColor(),
+        ),
         splashColor: Colors.white,
         elevation: 8,
         backgroundColor: Colors.amber,
@@ -102,7 +115,10 @@ class _FabScreenState extends State<FabScreen> {
           });
           //showToast("Button clicked.");
         },
-        label: const Text("Label"),
+        label: Text(
+          "Label",
+          style: TextStyle(color: Styles().getLabelColor()),
+        ),
       );
     } else if (selectedValue == radioButtonList[3]) {
       return FloatingActionButton.large(
@@ -112,16 +128,23 @@ class _FabScreenState extends State<FabScreen> {
         onPressed: () {
           showToast("Button clicked.");
         },
-        child: const Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Styles().getIconColor(),
+        ),
       );
     }
     return FloatingActionButton(
-        splashColor: Colors.red,
-        elevation: 8,
-        backgroundColor: Colors.blue,
-        onPressed: () {
-          showToast("Button clicked.");
-        },
-        child: const Icon(Icons.add));
+      splashColor: Colors.red,
+      elevation: 8,
+      backgroundColor: Colors.blue,
+      onPressed: () {
+        showToast("Button clicked.");
+      },
+      child: Icon(
+        Icons.add,
+        color: Styles().getIconColor(),
+      ),
+    );
   }
 }

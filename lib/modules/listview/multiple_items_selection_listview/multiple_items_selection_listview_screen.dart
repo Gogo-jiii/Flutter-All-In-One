@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common_widgets/common_widgets.dart';
+import '../../theme/styles.dart';
 import 'model_class.dart';
 
 class MultipleItemsSelectionListviewScreen extends StatefulWidget {
@@ -64,7 +65,7 @@ class _MultipleItemsSelectionListviewScreenState
                     child: Card(
                       color: list[index].isSelected
                           ? Colors.blueAccent
-                          : Colors.white,
+                          : Styles().getCardColor(),
                       margin: const EdgeInsets.all(8),
                       elevation: 1,
                       shape: RoundedRectangleBorder(

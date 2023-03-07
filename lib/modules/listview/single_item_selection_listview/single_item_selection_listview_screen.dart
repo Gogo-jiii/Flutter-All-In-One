@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common_widgets/common_widgets.dart';
+import '../../theme/styles.dart';
 import '../../toast/toast_screen.dart';
 
 class SingleItemSelectionListViewScreen extends StatefulWidget {
@@ -58,7 +59,7 @@ class _SingleItemSelectionListViewScreenState
                     child: Card(
                       color: _singleitemSelectionPosition == index
                           ? Colors.blueAccent
-                          : Colors.white,
+                          : Styles().getCardColor(),
                       margin: const EdgeInsets.all(8),
                       elevation: 1,
                       shape: RoundedRectangleBorder(

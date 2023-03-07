@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
 import '../../common_widgets/common_widgets.dart';
+import '../../theme/styles.dart';
 
 class HorizontalListViewScreen extends StatefulWidget {
   const HorizontalListViewScreen({Key? key}) : super(key: key);
@@ -68,7 +69,7 @@ class _HorizontalListViewScreenState extends State<HorizontalListViewScreen> {
     return Container(
         margin: const EdgeInsets.all(10),
         width: 200,
-        color: Colors.white,
+        color: Styles().getCardColor(),
         alignment: Alignment.center,
         child: Text(title, style: const TextStyle(fontSize: 20)));
   }
