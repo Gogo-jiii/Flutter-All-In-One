@@ -50,47 +50,47 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
+            getElevatedButton(
+              "Modal Bottom Sheet",
               onPressed: () {
                 doModelBottomSheet();
               },
-              child: const Text("Modal Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Persistent Bottom Sheet",
               onPressed: () {
                 doPersistentBottomSheet();
               },
-              child: const Text("Persistent Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Full Page Persistent Bottom Sheet",
               onPressed: () {
                 doFullPagePersistentBottomSheet();
               },
-              child: const Text("Full Page Persistent Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Specific Height Persistent Bottom Sheet",
               onPressed: () {
                 doSpecificHeightPersistentBottomSheet();
               },
-              child: const Text("Specific Height Persistent Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Scrollable Modal Bottom Sheet",
               onPressed: () {
                 doScrollableDraggableSheet();
               },
-              child: const Text("Scrollable Modal Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Listview Bottom Sheet",
               onPressed: () {
                 doListviewSheet();
               },
-              child: const Text("Listview Bottom Sheet"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Scrollable Draggable Listview Bottom Sheet",
               onPressed: () {
                 doScrollableDraggableListviewSheet();
               },
-              child: const Text("Scrollable Draggable Listview Bottom Sheet"),
             ),
           ],
         ),

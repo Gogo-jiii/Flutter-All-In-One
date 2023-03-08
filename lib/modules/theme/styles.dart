@@ -17,6 +17,14 @@ class Styles {
   Color _whiteColor = Colors.white;
   bool _isDarkTheme = false;
 
+  Color getPageBackgroundColor() {
+    return _isDarkTheme ? _primaryBlackColor : _whiteColor;
+  }
+
+  Color getAppbarColor() {
+    return _isDarkTheme ? _primaryBlackColor : _primaryColor;
+  }
+
   Color getIconColor() {
     return _isDarkTheme ? _whiteColor : _primaryBlackColor;
   }

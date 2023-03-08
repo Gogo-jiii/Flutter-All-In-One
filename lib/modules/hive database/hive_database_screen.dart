@@ -18,7 +18,7 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
   final TextEditingController _textEditingControllerNewData =
       TextEditingController();
   final TextEditingController _textEditingControllerDeleteData =
-  TextEditingController();
+      TextEditingController();
 
   @override
   void initState() {
@@ -60,10 +60,9 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Save Data",
                 onPressed: () {
                   if (_textEditingController.text.isEmpty) {
                     showToast("Please enter some text");
@@ -71,20 +70,15 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
                   }
                   saveData(_textEditingController.text.toString());
                 },
-                child: const Text("Save Data"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Get Data",
                 onPressed: () {
                   getData();
                 },
-                child: const Text("Get Data"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              getSizedBox(16),
               TextField(
                 controller: _textEditingControllerOldData,
                 decoration: const InputDecoration(
@@ -105,18 +99,14 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Update Data",
                 onPressed: () {
                   updateData();
                 },
-                child: const Text("Update Data"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              getSizedBox(16),
               TextField(
                 controller: _textEditingControllerDeleteData,
                 decoration: const InputDecoration(
@@ -127,14 +117,12 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Delete Data",
                 onPressed: () {
                   deleteData(_textEditingControllerDeleteData.text);
                 },
-                child: const Text("Delete Data"),
               ),
             ],
           ),
@@ -175,13 +163,13 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
         showToast("Data updated.");
         break;
       }
-      if (name != oldData && i == box.length-1) {
+      if (name != oldData && i == box.length - 1) {
         showToast("Data not found");
       }
     }
   }
 
-  void deleteData(String data) async{
+  void deleteData(String data) async {
     if (data.isEmpty) {
       showToast("Please enter data to be deleted");
       return;
@@ -194,7 +182,7 @@ class _HiveDatabaseScreenState extends State<HiveDatabaseScreen> {
         showToast("Data deleted.");
         break;
       }
-      if (name != data && i == box.length-1) {
+      if (name != data && i == box.length - 1) {
         showToast("Data not found");
       }
     }

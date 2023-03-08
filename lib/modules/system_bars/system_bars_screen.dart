@@ -19,41 +19,35 @@ class _SystemBarsScreenState extends State<SystemBarsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
+            getElevatedButton(
+              "Hide Status Bar",
               onPressed: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                     overlays: [SystemUiOverlay.bottom]);
               },
-              child: const Text("Hide Status Bar"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Hide Navigation Bar",
               onPressed: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                     overlays: [SystemUiOverlay.top]);
               },
-              child: const Text("Hide Navigation Bar"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Hide Status & Navigation Bar",
               onPressed: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
               },
-              child: const Text("Hide Status & Navigation Bar"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Status/Navigation Bar",
               onPressed: () {
                 SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                     overlays: SystemUiOverlay.values);
               },
-              child: const Text("Show Status/Navigation Bar"),
             ),
           ],
         ),

@@ -21,17 +21,17 @@ class _CameraScreenState extends State<CameraScreen> {
       appBar: getAppBar(context, "Camera"),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: setMargin(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ElevatedButton(
+              getElevatedButton(
+                "Click Image",
                 onPressed: () {
                   pickImage();
                 },
-                child: const Text("Click Image"),
               ),
-              const SizedBox(height: 16),
+              getSizedBox(16),
               _setImage(),
             ],
           ),

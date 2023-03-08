@@ -29,15 +29,13 @@ class _ProviderScreenState extends State<ProviderScreen> {
                   builder: (BuildContext context, value, Widget? child) {
                 return Text("The Count is : ${value.counter}");
               }),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Increase Counter",
                 onPressed: () {
                   providerModel.incrementCounter();
                 },
-                child: const Text("Increase Counter"),
-              )
+              ),
             ],
           ),
         ),

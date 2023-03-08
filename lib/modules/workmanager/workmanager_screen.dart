@@ -110,12 +110,13 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              getSizedBox(16),
               Text(
                 "Plugin initialization",
                 style: Theme.of(context).textTheme.headline5,
               ),
-              ElevatedButton(
-                child: const Text("Start the Flutter Work Manager"),
+              getElevatedButton(
+                "Start the Flutter Work Manager",
                 onPressed: () {
                   Workmanager().initialize(
                     callbackDispatcher,
@@ -123,23 +124,23 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
                   );
                 },
               ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                child: const Text("Register OneOff Task"),
+              getSizedBox(16),
+              getElevatedButton(
+                "Register OneOff Task",
                 onPressed: () {
                   Workmanager()
                       .registerOneOffTask(simpleTaskKey, simpleTaskKey);
                 },
               ),
-              ElevatedButton(
-                child: const Text("Register Periodic Task"),
+              getElevatedButton(
+                "Register Periodic Task",
                 onPressed: () {
                   Workmanager()
                       .registerPeriodicTask(periodicTaskKey, periodicTaskKey);
                 },
               ),
-              ElevatedButton(
-                child: const Text("Register Input Data Task"),
+              getElevatedButton(
+                "Register Input Data Task",
                 onPressed: () {
                   Workmanager().registerOneOffTask(
                     inputDataTaskKey,
@@ -150,8 +151,8 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
                   );
                 },
               ),
-              ElevatedButton(
-                child: const Text("Register Delayed Task"),
+              getElevatedButton(
+                "Register Delayed Task",
                 onPressed: () {
                   Workmanager().registerOneOffTask(
                     delayedTaskKey,
@@ -160,8 +161,8 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
                   );
                 },
               ),
-              ElevatedButton(
-                child: const Text("Register Background Task"),
+              getElevatedButton(
+                "Register Background Task",
                 onPressed: () {
                   Workmanager().registerOneOffTask(
                     backgroundTaskKey,
@@ -169,15 +170,15 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
                   );
                 },
               ),
+              getSizedBox(16),
               Text(
                 "Task cancellation",
                 style: Theme.of(context).textTheme.headline5,
               ),
-              ElevatedButton(
-                child: const Text("Cancel All"),
-                onPressed: () async {
-                  await Workmanager().cancelAll();
-                  debugPrint('Cancel all tasks completed');
+              getElevatedButton(
+                "Cancel All",
+                onPressed: () {
+                  cancelAllWorks();
                 },
               ),
             ],
@@ -185,5 +186,10 @@ class _WorkManagerScreenState extends State<WorkManagerScreen> {
         ),
       ),
     );
+  }
+
+  void cancelAllWorks() async {
+    await Workmanager().cancelAll();
+    debugPrint('Cancel all tasks completed');
   }
 }

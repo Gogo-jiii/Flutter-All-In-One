@@ -27,21 +27,18 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Encryption"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           children: [
             Text("Result: $result"),
-            const SizedBox(
-              height: 16,
-            ),
+            getSizedBox(16),
             TextField(
               controller: _textEditingController,
               decoration: const InputDecoration(labelText: "Enter some text"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Encrypt AES",
               onPressed: () {
                 var data = _textEditingController.text.toString();
                 if (data.isEmpty) {
@@ -50,9 +47,9 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   encryptData(data);
                 }
               },
-              child: const Text("Encrypt AES"),
             ),
-            ElevatedButton(
+            getElevatedButton(
+              "Decrypt AES",
               onPressed: () {
                 if (result.isEmpty) {
                   showToast("No text to decrypt.");
@@ -60,12 +57,10 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   decryptData(result);
                 }
               },
-              child: const Text("Decrypt AES"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Encrypt SHA256",
               onPressed: () {
                 var data = _textEditingController.text.toString();
                 if (data.isEmpty) {
@@ -74,7 +69,6 @@ class _EncryptionScreenState extends State<EncryptionScreen> {
                   encryptSHA256(data);
                 }
               },
-              child: const Text("Encrypt SHA256"),
             ),
           ],
         ),

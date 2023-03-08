@@ -15,10 +15,10 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-
   Location? location = Location();
   LocationData? _locationData;
-  final StreamController<UserLocationModel> _locationController = StreamController<UserLocationModel>();
+  final StreamController<UserLocationModel> _locationController =
+      StreamController<UserLocationModel>();
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
 
@@ -31,7 +31,7 @@ class _LocationScreenState extends State<LocationScreen> {
       child: Scaffold(
         appBar: getAppBar(context, "Location"),
         body: Container(
-          margin: const EdgeInsets.all(16),
+          margin: setMargin(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -39,23 +39,19 @@ class _LocationScreenState extends State<LocationScreen> {
                 _Result(),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Get Last Location",
                 onPressed: () {
                   getLastLocation();
                 },
-                child: const Text("Get Last Location"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Get Continuous Location",
                 onPressed: () {
                   getContinuousLocation();
                 },
-                child: const Text("Get Continuous Location"),
               ),
             ],
           ),
@@ -126,5 +122,4 @@ class _LocationScreenState extends State<LocationScreen> {
       });
     });
   }
-
 }

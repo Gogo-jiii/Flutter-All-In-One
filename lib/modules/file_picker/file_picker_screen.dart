@@ -19,37 +19,31 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
     return Scaffold(
         appBar: getAppBar(context, "File Picker"),
         body: Container(
-          margin: const EdgeInsets.all(16),
+          margin: setMargin(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text("Data: $data"),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Pick a single file",
                 onPressed: () {
                   pickSingleFile();
                 },
-                child: const Text("Pick a single file"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Pick multiple files",
                 onPressed: () {
                   pickMultipleFiles();
                 },
-                child: const Text("Pick multiple files"),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Pick only pdf file",
                 onPressed: () {
                   pickOnlyPdfFile();
                 },
-                child: const Text("Pick only pdf file"),
               ),
             ],
           ),

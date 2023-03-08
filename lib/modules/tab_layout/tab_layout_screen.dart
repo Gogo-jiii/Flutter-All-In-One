@@ -3,6 +3,8 @@ import 'package:flutter_all_in_one/modules/tab_layout/first_screen.dart';
 import 'package:flutter_all_in_one/modules/tab_layout/second_screen.dart';
 import 'package:flutter_all_in_one/modules/tab_layout/third_screen.dart';
 
+import '../theme/styles.dart';
+
 class TabLayoutScreen extends StatelessWidget {
   const TabLayoutScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,7 @@ class TabLayoutScreen extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Styles().getAppbarColor(),
             title: const Text("Tab Layout"),
             bottom: const TabBar(tabs: [
               Tab(icon: Icon(Icons.directions_car)),

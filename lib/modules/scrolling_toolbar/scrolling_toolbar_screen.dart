@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/styles.dart';
+
 class ScrollingToolbarScreen extends StatefulWidget {
   ScrollingToolbarScreen({Key? key}) : super(key: key);
 
@@ -71,7 +73,7 @@ class _ScrollingToolbarScreenState extends State<ScrollingToolbarScreen> {
       barrierDismissible: true,
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: Styles().getAlertDialogBackgroundColor(),
         elevation: 8,
         scrollable: true,
         shape: const RoundedRectangleBorder(

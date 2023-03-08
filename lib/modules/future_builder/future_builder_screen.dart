@@ -37,14 +37,12 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
                 },
                 future: getData(),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
+              getSizedBox(16),
+              getElevatedButton(
+                "Click to get the data",
                 onPressed: () {
                   getData();
                 },
-                child: const Text("Click to get the data"),
               ),
             ],
           ),
@@ -55,7 +53,7 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
 
   Future<User> getData() async {
     late User model;
-    await Future.delayed(Duration(seconds: 5), () async {
+    await Future.delayed(const Duration(seconds: 5), () async {
       model = User("IT WALA");
     });
     return model;

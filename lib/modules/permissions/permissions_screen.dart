@@ -20,36 +20,27 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
+            getElevatedButton(
+              "Check Permissions",
               onPressed: () {
                 checkPermissions();
               },
-              child: const Text("Check Permissions"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Ask Permissions",
               onPressed: () {
                 askPermissions();
               },
-              child: const Text("Ask Permissions"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Divider(
-              thickness: 5,
-              height: 16,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getDivider(8),
+            getSizedBox(16),
+            getElevatedButton(
+              "Ask Multiple  Permissions",
               onPressed: () {
                 askMultiplePermissions();
               },
-              child: const Text("Ask Multiple Permissions"),
             ),
           ],
         ),

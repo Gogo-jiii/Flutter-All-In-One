@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/styles.dart';
+
 class SecondScreen extends StatefulWidget {
   const SecondScreen({Key? key}) : super(key: key);
 
@@ -10,9 +12,15 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Styles().getPageBackgroundColor(),
       body: Center(
-        child: Text("Second Fragment"),
+        child: Text(
+          "Second Fragment",
+          style: TextStyle(
+            color: Styles().getTextColor(),
+          ),
+        ),
       ),
     );
   }

@@ -18,11 +18,11 @@ class _FingerPrintAuthScreenState extends State<FingerPrintAuthScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Finger Print Authentication"),
       body: Center(
-        child: ElevatedButton(
+        child: getElevatedButton(
+          "Authenticate Finger Print",
           onPressed: () {
             authenticate();
           },
-          child: const Text("Authenticate Finger Print"),
         ),
       ),
     );

@@ -27,7 +27,7 @@ class _SqliteScreenState extends State<SqliteScreen> {
     return Scaffold(
       appBar: getAppBar(context, "SQLite"),
       body: Container(
-        margin: EdgeInsets.all(16),
+        margin: setMargin(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,46 +51,31 @@ class _SqliteScreenState extends State<SqliteScreen> {
                         return null;
                       },
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          await dbManager.insertModel(ModelClass(name: _name));
-                          showToast("Data saved");
-                        }
+                    getSizedBox(16),
+                    getElevatedButton(
+                      "Save data",
+                      onPressed: () {
+                        saveData();
                       },
-                      child: const Text("Save data"),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        List<ModelClass> list = await dbManager.getModelList();
-                        showToast("Data: ${list.toString()}");
+                    getSizedBox(16),
+                    getElevatedButton(
+                      "Get data",
+                      onPressed: () {
+                        getData();
                       },
-                      child: const Text("Get data"),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          await dbManager.deleteModel(ModelClass(name: _name));
-                          showToast("Data deleted");
-                        }
+                    getSizedBox(16),
+                    getElevatedButton(
+                      "Delete data",
+                      onPressed: () {
+                        deleteData();
                       },
-                      child: const Text("Delete data"),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              getSizedBox(16),
               Form(
                 key: _form2Key,
                 child: Column(
@@ -110,9 +95,7 @@ class _SqliteScreenState extends State<SqliteScreen> {
                         return null;
                       },
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    getSizedBox(16),
                     TextFormField(
                       onChanged: (value) {
                         setState(() {
@@ -128,23 +111,12 @@ class _SqliteScreenState extends State<SqliteScreen> {
                         return null;
                       },
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (_form2Key.currentState!.validate()) {
-                          List<Map<String, dynamic>> listOfMap =
-                              await dbManager.getModel(_oldData);
-
-                          Map<String, dynamic> firstMap = listOfMap[0];
-                          ModelClass oldModel = ModelClass.fromJson(firstMap);
-                          oldModel.name = _newData;
-                          await dbManager.updateModel(oldModel);
-                          showToast("Data updated");
-                        }
+                    getSizedBox(16),
+                    getElevatedButton(
+                      "Update data",
+                      onPressed: () {
+                        updateData();
                       },
-                      child: const Text("Update data"),
                     ),
                   ],
                 ),
@@ -154,5 +126,36 @@ class _SqliteScreenState extends State<SqliteScreen> {
         ),
       ),
     );
+  }
+
+  void saveData() async {
+    if (_formKey.currentState!.validate()) {
+      await dbManager.insertModel(ModelClass(name: _name));
+      showToast("Data saved");
+    }
+  }
+
+  void getData() async {
+    List<ModelClass> list = await dbManager.getModelList();
+    showToast("Data: ${list.toString()}");
+  }
+
+  void deleteData() async {
+    if (_formKey.currentState!.validate()) {
+      await dbManager.deleteModel(ModelClass(name: _name));
+      showToast("Data deleted");
+    }
+  }
+
+  void updateData() async {
+    if (_form2Key.currentState!.validate()) {
+      List<Map<String, dynamic>> listOfMap = await dbManager.getModel(_oldData);
+
+      Map<String, dynamic> firstMap = listOfMap[0];
+      ModelClass oldModel = ModelClass.fromJson(firstMap);
+      oldModel.name = _newData;
+      await dbManager.updateModel(oldModel);
+      showToast("Data updated");
+    }
   }
 }

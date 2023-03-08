@@ -16,8 +16,10 @@ class _InteractiveViewerScreenState extends State<InteractiveViewerScreen> {
       appBar: getAppBar(context, "Interactive Viewer"),
       body: InteractiveViewer(
         child: Center(
-          child: ElevatedButton(
-              onPressed: () {}, child: const Text("Drag and Zoom this button")),
+          child: getElevatedButton(
+            "Drag and Zoom this button",
+            onPressed: () {},
+          ),
         ),
       ),
     );

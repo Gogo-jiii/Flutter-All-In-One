@@ -19,7 +19,7 @@ class _StorageScreenState extends State<StorageScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Local Storage"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,124 +29,136 @@ class _StorageScreenState extends State<StorageScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 16,
+              getSizedBox(16),
+              getElevatedButton(
+                "Create a file.",
+                onPressed: () {
+                  try {
+                    getInternalStorageFile();
+                    showToast("File created.");
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    try {
-                      getInternalStorageFile();
-                      showToast("File created.");
-                    } catch (e) {
-                      debugPrintStack(label: e.toString());
-                    }
-                  },
-                  child: const Text("Create a file.")),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "Write to file.",
+                onPressed: () {
+                  try {
                     writeToInternalStorageFile();
-                  },
-                  child: const Text("Write to file.")),
-              const SizedBox(
-                height: 16,
+                    showToast("File created.");
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "Read file.",
+                onPressed: () {
+                  try {
                     readFromInternalStorageFile();
-                  },
-                  child: const Text("Read file.")),
-              const Divider(
-                height: 16,
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
+              getDivider(8),
               const Text(
                 "External Storage",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 16,
+              getSizedBox(16),
+              getElevatedButton(
+                "Create a file.",
+                onPressed: () {
+                  try {
+                    getExternalStorageFile();
+                    showToast("File created.");
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    try {
-                      getExternalStorageFile();
-                      showToast("File created.");
-                    } catch (e) {
-                      debugPrintStack(label: e.toString());
-                    }
-                  },
-                  child: const Text("Create a file.")),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "Write to file.",
+                onPressed: () {
+                  try {
                     writeToExternalStorageFile();
-                  },
-                  child: const Text("Write to file.")),
-              const SizedBox(
-                height: 16,
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "Read file.",
+                onPressed: () {
+                  try {
                     readFromExternalStorageFile();
-                  },
-                  child: const Text("Read file.")),
-              const Divider(
-                height: 16,
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
+              getDivider(8),
               const Text(
                 "Download Folder",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 16,
+              getSizedBox(16),
+              getElevatedButton(
+                "Create a file.",
+                onPressed: () {
+                  try {
+                    checkPermissions().then((value) => {
+                          if (value)
+                            {
+                              getFileFromDownloadFolder(),
+                              showToast("File created.")
+                            }
+                          else
+                            {
+                              askPermissions().then((value) => {
+                                    if (value)
+                                      {
+                                        getFileFromDownloadFolder(),
+                                        showToast("File created.")
+                                      }
+                                  })
+                            }
+                        });
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    try {
-                      checkPermissions().then((value) => {
-                            if (value)
-                              {
-                                getFileFromDownloadFolder(),
-                                showToast("File created.")
-                              }
-                            else
-                              {
-                                askPermissions().then((value) => {
-                                      if (value)
-                                        {
-                                          getFileFromDownloadFolder(),
-                                          showToast("File created.")
-                                        }
-                                    })
-                              }
-                          });
-                    } catch (e) {
-                      debugPrintStack(label: e.toString());
-                    }
-                  },
-                  child: const Text("Create a file.")),
-              const SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "RWrite to file.",
+                onPressed: () {
+                  try {
                     writeToDownloadFolder();
-                  },
-                  child: const Text("Write to file.")),
-              const SizedBox(
-                height: 16,
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
               ),
-              ElevatedButton(
-                  onPressed: () {
+              getSizedBox(16),
+              getElevatedButton(
+                "Read file.",
+                onPressed: () {
+                  try {
                     readFromDownloadFolder();
-                  },
-                  child: const Text("Read file.")),
+                  } catch (e) {
+                    debugPrintStack(label: e.toString());
+                  }
+                },
+              ),
             ],
           ),
         ),

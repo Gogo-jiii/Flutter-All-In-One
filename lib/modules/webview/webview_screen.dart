@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../theme/styles.dart';
+
 class WebViewScreen extends StatefulWidget {
   const WebViewScreen({Key? key}) : super(key: key);
 
@@ -11,7 +13,6 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen>
     with TickerProviderStateMixin {
-
   late AnimationController controller;
   final WebViewController _webViewController = WebViewController();
 
@@ -44,15 +45,11 @@ class _WebViewScreenState extends State<WebViewScreen>
             WebViewWidget(
               controller: _webViewController
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                ..setBackgroundColor(const Color(0x00000000))
+                ..setBackgroundColor(Styles().getPageBackgroundColor())
                 ..setNavigationDelegate(
                   NavigationDelegate(
-                    onProgress: (int progress) {
-
-                    },
-                    onPageStarted: (String url) {
-
-                    },
+                    onProgress: (int progress) {},
+                    onPageStarted: (String url) {},
                     onPageFinished: (String url) {
                       controller.stop(canceled: true);
                     },
@@ -65,7 +62,9 @@ class _WebViewScreenState extends State<WebViewScreen>
                     },
                   ),
                 )
-                ..loadRequest(Uri.parse('https://www.google.com')),
+                ..loadRequest(
+                  Uri.parse('https://www.google.com'),
+                ),
             ),
           ],
         ),

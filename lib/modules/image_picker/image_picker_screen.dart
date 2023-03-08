@@ -20,17 +20,17 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Image Picker"),
       body: Container(
-        margin: EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
+            getElevatedButton(
+              "Pick Image",
               onPressed: () {
                 pickImage();
               },
-              child: const Text("Pick Image"),
             ),
-            const SizedBox(height: 16),
+            getSizedBox(16),
             _setImage(),
           ],
         ),

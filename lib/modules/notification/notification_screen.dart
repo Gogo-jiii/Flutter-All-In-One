@@ -37,105 +37,85 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Notification"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
+            getElevatedButton(
+              "Show Normal Notification",
               onPressed: () {
                 showNormalNotification();
               },
-              child: const Text("Show Normal Notification"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show On Going Notification",
               onPressed: () {
                 showOnGoingNotification();
               },
-              child: const Text("Show On Going Notification"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Large Icon Notification",
               onPressed: () {
                 showLargeIconNotification();
               },
-              child: const Text("Show Large Icon Notification"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Timeout",
               onPressed: () {
                 showNotificationWithTimeout();
               },
-              child: const Text("Show Notification With Timeout"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Action Button",
               onPressed: () {
                 showNotificationWithActionButton();
               },
-              child: const Text("Show Notification With Action Button"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Text Button",
               onPressed: () {
                 showNotificationWithTextButton();
               },
-              child: const Text("Show Notification With Text Button"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Big Text Notification",
               onPressed: () {
                 showBigTextNotification();
               },
-              child: const Text("Show Big Text Notification"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Infinite Progress",
               onPressed: () {
                 showInfiniteProgressNotification();
               },
-              child: const Text("Show Notification With Infinite Progress"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Progress",
               onPressed: () {
                 showProgressNotification();
               },
-              child: const Text("Show Notification With Progress"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With Big Picture",
               onPressed: () {
                 showBigPictureNotification();
               },
-              child: const Text("Show Notification With Big Picture"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Show Notification With On Click Event",
               onPressed: () {
                 showNotificationWithClickEvent();
               },
-              child: const Text("Show Notification With On Click Event"),
             ),
           ],
         ),

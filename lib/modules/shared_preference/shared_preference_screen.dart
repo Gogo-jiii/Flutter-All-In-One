@@ -18,44 +18,44 @@ class _SharedPreferenceScreenState extends State<SharedPreferenceScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Shared Preference"),
       body: Container(
-        margin: const EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           children: [
             const Text(
               "Save following data to the shared preference.",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            getSizedBox(16),
             const Text(
               "IT WALA, 100, 10.5, True, ['A', 'B', 'C']",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            getSizedBox(16),
             Row(
               children: [
                 Expanded(
                   flex: 1,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      saveData();
-                    },
-                    child: const Text("Save data"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: getElevatedButton(
+                      "Save data",
+                      onPressed: () {
+                        saveData();
+                      },
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                getSizedBox(16),
                 Expanded(
                   flex: 1,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      getData();
-                    },
-                    child: const Text("Get data"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: getElevatedButton(
+                      "Get data",
+                      onPressed: () {
+                        getData();
+                      },
+                    ),
                   ),
                 ),
               ],

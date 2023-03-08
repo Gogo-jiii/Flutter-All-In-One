@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/styles.dart';
+
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);
 
@@ -10,9 +12,15 @@ class ThirdScreen extends StatefulWidget {
 class _ThirdScreenState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Styles().getPageBackgroundColor(),
       body: Center(
-        child: Text("Third Fragment"),
+        child: Text(
+          "Third Fragment",
+          style: TextStyle(
+            color: Styles().getTextColor(),
+          ),
+        ),
       ),
     );
   }

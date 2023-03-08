@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_all_in_one/modules/common_widgets/common_widgets.dart';
 import 'package:flutter_all_in_one/modules/toast/toast_screen.dart';
 
+import '../theme/styles.dart';
+
 class BottomAppBarScreen extends StatefulWidget {
   const BottomAppBarScreen({Key? key}) : super(key: key);
 
@@ -19,12 +21,15 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           onPressed: () {
             showToast("clicked");
           }),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
+        color: Styles().getAppbarColor(),
         shape: const CircularNotchedRectangle(),
         child: Row(
           children: [

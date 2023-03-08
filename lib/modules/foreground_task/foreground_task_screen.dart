@@ -85,7 +85,6 @@ class ForegroundTaskScreen extends StatefulWidget {
 }
 
 class _ForegroundTaskScreenState extends State<ForegroundTaskScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -131,11 +130,11 @@ class _ForegroundTaskScreenState extends State<ForegroundTaskScreen> {
       child: Scaffold(
         appBar: getAppBar(context, "Foreground Task"),
         body: Center(
-          child: ElevatedButton(
+          child: getElevatedButton(
+            "Do task",
             onPressed: () {
               doTask();
             },
-            child: const Text("Do task"),
           ),
         ),
       ),

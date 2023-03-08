@@ -19,7 +19,7 @@ class _ShareDataScreenState extends State<ShareDataScreen> {
     return Scaffold(
       appBar: getAppBar(context, "Share Data"),
       body: Container(
-        margin: EdgeInsets.all(16),
+        margin: setMargin(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -27,10 +27,9 @@ class _ShareDataScreenState extends State<ShareDataScreen> {
               controller: _textEditingController,
               decoration: const InputDecoration(labelText: "Enter data"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Share Text",
               onPressed: () {
                 var data = _textEditingController.text.toString();
                 if (data.isEmpty) {
@@ -39,16 +38,13 @@ class _ShareDataScreenState extends State<ShareDataScreen> {
                   shareData(data.toString());
                 }
               },
-              child: const Text("Share Text"),
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
+            getSizedBox(16),
+            getElevatedButton(
+              "Share File",
               onPressed: () {
                 shareFile();
               },
-              child: const Text("Share File"),
             ),
           ],
         ),

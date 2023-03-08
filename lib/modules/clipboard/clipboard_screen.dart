@@ -21,7 +21,7 @@ class _ClipBoardScreenState extends State<ClipBoardScreen> {
       body: Form(
         key: widget._formKey,
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: setMargin(16),
           child: Column(
             children: [
               TextFormField(
@@ -36,37 +36,39 @@ class _ClipBoardScreenState extends State<ClipBoardScreen> {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              getSizedBox(16),
               Row(
                 children: [
                   Expanded(
                     flex: 1,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (widget._formKey.currentState!.validate()) {
-                          FlutterClipboard.copy(widget._enteredText.trim())
-                              .then((value) => print('copied'));
-                        }
-                      },
-                      child: const Text("Save"),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: getElevatedButton(
+                        "Save",
+                        onPressed: () {
+                          if (widget._formKey.currentState!.validate()) {
+                            FlutterClipboard.copy(widget._enteredText.trim())
+                                .then((value) => print('copied'));
+                          }
+                        },
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 16,
-                  ),
+                  getSizedBox(16),
                   Expanded(
                     flex: 1,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        FlutterClipboard.paste().then((value) {
-                          setState(() {
-                            showToast(value);
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: getElevatedButton(
+                        "Get Data",
+                        onPressed: () {
+                          FlutterClipboard.paste().then((value) {
+                            setState(() {
+                              showToast(value);
+                            });
                           });
-                        });
-                      },
-                      child: const Text("Get Data"),
+                        },
+                      ),
                     ),
                   ),
                 ],

@@ -44,13 +44,13 @@ class _PictureInPictureScreenState extends State<PictureInPictureScreen>
       appBar: getAppBar(context, "Picture in Picture"),
       body: PiPSwitcher(
         childWhenDisabled: Container(
-          margin: const EdgeInsets.all(16),
+          margin: setMargin(16),
           child: Center(
-            child: ElevatedButton(
+            child: getElevatedButton(
+              "Click to enable Pip Mode",
               onPressed: () {
                 gotoPipMode();
               },
-              child: const Text("Click to enable Pip Mode"),
             ),
           ),
         ),
