@@ -54,6 +54,7 @@ import 'package:flutter_all_in_one/modules/toolbar_menu/toolbar_menu_screen.dart
 import 'package:flutter_all_in_one/modules/view_pager/view_pager_screen.dart';
 import 'package:flutter_all_in_one/modules/visibility/visibility_screen.dart';
 import 'package:flutter_all_in_one/modules/webview/webview_screen.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import 'modules/avatar/avatar_screen.dart';
@@ -64,6 +65,7 @@ import 'modules/dropdown_button/dropdown_button_screen.dart';
 import 'modules/dropdown_formfield/dropdown_formfield_screen.dart';
 import 'modules/file_picker/file_picker_screen.dart';
 import 'modules/finger_print_auth/finger_print_auth_screen.dart';
+import 'modules/getx/getx_screen.dart';
 import 'modules/google_signin/google_signin_screen.dart';
 import 'modules/hive database/hive_database_screen.dart';
 import 'modules/provider/provider_model.dart';
@@ -117,7 +119,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: Consumer<DarkThemeProvider>(
         builder: (BuildContext context, value, Widget? child) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'Flutter Demo',
             theme: Styles().themeData(themeChangeProvider.darkTheme, context),
             home: const MyHomePage(title: 'Flutter All in One'),
@@ -206,7 +208,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Horizontal Stepper",
     "Hive Database",
     "Google Map",
-    "Google SignIn"
+    "Google SignIn",
+    "GetX",
   ];
 
   @override
@@ -463,6 +466,9 @@ void navigate(BuildContext context, int index) {
     case DashboardItemsType.googleSignIn:
       navigateTo(context, const GoogleSignInScreen());
       break;
+    case DashboardItemsType.getX:
+      navigateTo(context, const GetXScreen());
+      break;
   }
 }
 
@@ -539,6 +545,7 @@ enum DashboardItemsType {
   hiveDatabase,
   googleMap,
   googleSignIn,
+  getX,
 }
 
 DashboardItemsType getListItemType(int index) {
