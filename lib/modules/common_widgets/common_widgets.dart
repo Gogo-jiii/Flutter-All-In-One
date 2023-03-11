@@ -41,6 +41,7 @@ ElevatedButton getElevatedButton(title, {required Null Function() onPressed}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: Styles().getButtonColor(),
+      padding: const EdgeInsets.all(8),
     ),
     onPressed: onPressed,
     child: Text(title),

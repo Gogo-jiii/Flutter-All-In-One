@@ -15,12 +15,14 @@ class GetXScreen extends StatefulWidget {
 }
 
 class _GetXScreenState extends State<GetXScreen> {
+  var counter = 0.obs;
 
   @override
   void initState() {
     Get.put(ModelClass1());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +66,36 @@ class _GetXScreenState extends State<GetXScreen> {
               ModelClass1 _model = Get.find();
               _model.city = "MUMBAI";
               Get.to(() => Page1Screen(name: "vaibhav"));
+            }),
+            getSizedBox(16),
+            getElevatedButton(
+              "State management : click to increase the counter below",
+              onPressed: () {
+                counter++;
+              },
+            ),
+            getSizedBox(8),
+            Obx(
+              () => Text(
+                counter.toString(),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            getSizedBox(16),
+            getElevatedButton("Validation", onPressed: () {
+              Get.snackbar("Info", "Check Log for output",
+                  duration: const Duration(seconds: 5),
+                  snackPosition: SnackPosition.BOTTOM);
+              debugPrint("Is Null or Blank: ${GetUtils.isNullOrBlank("")}");
+              debugPrint("Is Blank: ${GetUtils.isBlank("value")}");
+              debugPrint("Is Email: ${GetUtils.isEmail("a@gmail.com")}");
+              debugPrint("Is Email: ${GetUtils.isEmail("agmail.com")}");
+              debugPrint(
+                  "Is Length Equal To: ${GetUtils.isLengthEqualTo("1234567890", 10)}");
+            }),
+            getSizedBox(16),
+            getElevatedButton("Get Request", onPressed: () {
+
             }),
           ],
         ),
