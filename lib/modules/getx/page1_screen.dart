@@ -23,6 +23,11 @@ class _Page1ScreenState extends State<Page1Screen> {
     setState(() {
       if (model.city.isNotEmpty) _city = model.city;
     });
+
+    if(Get.arguments != null){
+      var arguments = Get.arguments['surname'];
+      debugPrint(arguments.toString());
+    }
     super.initState();
   }
 

@@ -50,7 +50,7 @@
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value=""/>
+            android:value="AIzaSyA0ASxIRos6M7f0Jr7CcKZu8ioq6tofKzk"/>
 
     </application>
 </manifest>
